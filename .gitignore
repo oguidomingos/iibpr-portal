@@ -1,0 +1,38 @@
+# ─── Build dependencies ──────────────────────────────────────────
+/node_modules
+/vendor
+
+# ─── Tailwind intellisense (só dev local) ────────────────────────
+tailwind-intellisense.css
+
+# ─── Arquivos compilados: COMMITADOS intencionalmente ─────────────
+# theme/style.css, theme/style-editor.css, theme/js/ são incluídos
+# no git para deploy direto sem precisar rodar npm no servidor.
+
+# ─── Lixo de trabalho/desenvolvimento ────────────────────────────
+iibpr-theme-work/
+iibpr-wp-theme/
+agents/
+skills/
+research-navigator/
+
+# ─── Arquivos de contexto AI ──────────────────────────────────────
+IDENTITY.md
+MEMORY.md
+ORCHESTRATOR.md
+USER.md
+
+# ─── Logs ────────────────────────────────────────────────────────
+theme/logs/
+*.log
+
+# ─── macOS / IDE ──────────────────────────────────────────────────
+.DS_Store
+.vscode/
+.idea/
+
+# ─── pnpm store oculto ────────────────────────────────────────────
+.pnpm-store/
+
+# ─── Zips de deploy ──────────────────────────────────────────────
+*.zip

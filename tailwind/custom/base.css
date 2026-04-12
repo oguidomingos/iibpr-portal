@@ -1,0 +1,12 @@
+/**
+ * Custom base styles
+ */
+
+body {
+	@apply bg-warm-white text-foreground font-sans;
+}
+
+/* Offset for fixed header */
+main {
+	padding-top: 72px;
+}

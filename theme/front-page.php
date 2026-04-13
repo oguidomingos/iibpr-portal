@@ -20,6 +20,9 @@ get_header(); ?>
 	// 4. About / Pillars (with real photos + mosaic)
 	get_template_part( 'template-parts/sections/about-pillars' );
 
+	// 4b. Benefits — Valorização, Autoconhecimento, Progresso, Vivência (from original site)
+	get_template_part( 'template-parts/sections/benefits' );
+
 	// 5. Founders — Fabiane, Augusto, Mauro (with real photos)
 	get_template_part( 'template-parts/sections/founders' );
 

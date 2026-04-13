@@ -39,7 +39,7 @@ add_action( 'after_setup_theme', 'iibpr_theme_setup' );
    -------------------------------------------------- */
 function iibpr_scripts() {
     // Tailwind CSS compilado
-    wp_enqueue_style( 'iibpr-tailwind', get_template_directory_uri() . '/theme/style.css', array(), '3.0.0' );
+    wp_enqueue_style( 'iibpr-tailwind', get_template_directory_uri() . '/style.css', array(), '3.0.0' );
 
     // Fontes Google — Inter + Playfair Display
     wp_enqueue_style( 'iibpr-fonts',
@@ -51,7 +51,7 @@ function iibpr_scripts() {
     wp_enqueue_style( 'iibpr-style', get_stylesheet_uri(), array( 'iibpr-tailwind' ), '3.0.0' );
 
     // Script principal
-    wp_enqueue_script( 'iibpr-app', get_template_directory_uri() . '/theme/js/script.min.js', array(), '3.1.0', true );
+    wp_enqueue_script( 'iibpr-app', get_template_directory_uri() . '/js/script.min.js', array(), '3.1.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'iibpr_scripts' );
 
@@ -81,9 +81,9 @@ add_action( 'widgets_init', 'iibpr_widgets_init' );
 /* --------------------------------------------------
    4. INCLUDES
    -------------------------------------------------- */
-require get_template_directory() . '/inc/customizer.php';
-require get_template_directory() . '/inc/cpt.php';
-require get_template_directory() . '/inc/meta-boxes.php';
+require __DIR__ . '/inc/customizer.php';
+require __DIR__ . '/inc/cpt.php';
+require __DIR__ . '/inc/meta-boxes.php';
 
 /* --------------------------------------------------
    5. FLUSH REWRITE RULES ON THEME SWITCH

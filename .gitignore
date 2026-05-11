@@ -37,3 +37,4 @@ theme/logs/
 # ─── Zips de deploy ──────────────────────────────────────────────
 *.zip
 .playwright-mcp/
+.env

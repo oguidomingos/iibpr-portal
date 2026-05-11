@@ -36,64 +36,83 @@ $past = new WP_Query( array(
         ),
     ),
 ) );
+
+$img     = get_template_directory_uri() . '/images/';
+$hero_bg = iibpr_get( 'iibpr_eventos_hero_bg' );
 ?>
 
 <main id="main" class="site-main">
 
-	<!-- Hero with real photo -->
-	<?php $img = get_template_directory_uri() . '/images/'; ?>
+	<!-- Hero -->
 	<section class="py-20 px-4 md:px-8 text-white text-center -mt-[72px] pt-[92px] relative overflow-hidden"
-	         style="background-image: linear-gradient(135deg, rgba(64,72,86,0.88) 0%, rgba(58,90,42,0.82) 100%), url('<?php echo esc_url( $img . 'mauro-palestra2.png' ); ?>'); background-size: cover; background-position: center;">
+	         style="background-image: linear-gradient(135deg, rgba(64,72,86,0.88) 0%, rgba(58,90,42,0.82) 100%), url('<?php echo $hero_bg ? esc_url( $hero_bg ) : esc_url( $img . 'mauro-palestra2.png' ); ?>'); background-size: cover; background-position: center;">
 		<div class="max-w-4xl mx-auto relative z-10">
-			<h1 class="text-4xl md:text-5xl font-extrabold mb-4">Eventos</h1>
-			<p class="text-xl opacity-90">Fique por dentro das novidades — venha fazer parte de experiências únicas.</p>
+			<h1 class="text-4xl md:text-5xl font-extrabold mb-4"><?php echo esc_html( iibpr_get( 'iibpr_eventos_hero_title', 'Eventos' ) ); ?></h1>
+			<p class="text-xl opacity-90"><?php echo esc_html( iibpr_get( 'iibpr_eventos_hero_subtitle', 'Fique por dentro das novidades — venha fazer parte de experiências únicas.' ) ); ?></p>
 		</div>
 	</section>
 
-	<!-- Featured: 2° Seminário Internacional -->
+	<!-- Featured Event Card -->
+	<?php if ( iibpr_get( 'iibpr_eventos_feat_show', '1' ) ) : ?>
 	<section class="py-16 px-4 md:px-8 bg-white">
 		<div class="max-w-4xl mx-auto">
 			<div class="bg-green-50 rounded-2xl overflow-hidden border border-green-200">
 				<div class="h-2 bg-gradient-to-r from-green-600 to-green-400"></div>
 				<div class="p-8 md:p-12">
-					<span class="inline-block bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full mb-4">Evento Destaque</span>
-					<h2 class="text-3xl font-extrabold text-gray-900 mb-4">2° Seminário Internacional de Psicomotricidade</h2>
+					<span class="inline-block bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full mb-4"><?php echo esc_html( iibpr_get( 'iibpr_eventos_feat_badge', 'Evento Destaque' ) ); ?></span>
+					<h2 class="text-3xl font-extrabold text-gray-900 mb-4"><?php echo esc_html( iibpr_get( 'iibpr_eventos_feat_title', '' ) ); ?></h2>
 					<div class="flex flex-wrap gap-4 mb-6 text-sm">
+						<?php $feat_date = iibpr_get( 'iibpr_eventos_feat_date' ); if ( $feat_date ) : ?>
 						<span class="flex items-center gap-1 text-green-600 font-medium">
 							<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-							31 de Outubro a 1° de Novembro, 2025
+							<?php echo esc_html( $feat_date ); ?>
 						</span>
+						<?php endif; ?>
+						<?php $feat_loc = iibpr_get( 'iibpr_eventos_feat_location' ); if ( $feat_loc ) : ?>
 						<span class="flex items-center gap-1 text-gray-600">
 							<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-							IESB Campus Sul — Brasília, DF
+							<?php echo esc_html( $feat_loc ); ?>
 						</span>
+						<?php endif; ?>
 					</div>
-					<p class="text-gray-700 text-lg mb-4"><strong>Tema:</strong> Inovação e a Tecnologia Para Promoção da Saúde</p>
+					<?php $feat_theme = iibpr_get( 'iibpr_eventos_feat_theme' ); if ( $feat_theme ) : ?>
+					<p class="text-gray-700 text-lg mb-4"><strong>Tema:</strong> <?php echo esc_html( $feat_theme ); ?></p>
+					<?php endif; ?>
 					<div class="flex flex-wrap gap-6 mb-8 text-sm text-gray-600">
+						<?php $d1 = iibpr_get( 'iibpr_eventos_feat_detail_1' ); if ( $d1 ) : ?>
 						<span class="flex items-center gap-2">
 							<svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-							20 horas certificadas
+							<?php echo esc_html( $d1 ); ?>
 						</span>
+						<?php endif; ?>
+						<?php $d2 = iibpr_get( 'iibpr_eventos_feat_detail_2' ); if ( $d2 ) : ?>
 						<span class="flex items-center gap-2">
 							<svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-							20+ palestrantes
+							<?php echo esc_html( $d2 ); ?>
 						</span>
+						<?php endif; ?>
 					</div>
 					<div class="flex flex-wrap items-center gap-4">
-						<span class="text-2xl font-extrabold text-gray-900">A partir de R$148,00</span>
-						<a href="https://wa.me/5561991572149" target="_blank" rel="noopener" class="btn-primary text-sm py-3 px-8">Garantir Minha Vaga</a>
+						<?php $feat_price = iibpr_get( 'iibpr_eventos_feat_price' ); if ( $feat_price ) : ?>
+						<span class="text-2xl font-extrabold text-gray-900"><?php echo esc_html( $feat_price ); ?></span>
+						<?php endif; ?>
+						<a href="<?php echo esc_url( iibpr_get( 'iibpr_eventos_feat_cta_url', 'https://wa.me/5561991572149' ) ); ?>"
+						   target="_blank" rel="noopener" class="btn-primary text-sm py-3 px-8">
+							<?php echo esc_html( iibpr_get( 'iibpr_eventos_feat_cta_label', 'Garantir Minha Vaga' ) ); ?>
+						</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+	<?php endif; ?>
 
 	<!-- Upcoming Events -->
 	<section class="py-20 px-4 md:px-8 bg-gray-50">
 		<div class="max-w-4xl mx-auto">
 			<div class="text-center mb-14">
-				<p class="section-label">Agenda</p>
-				<h2 class="text-3xl font-extrabold text-gray-900 mt-2">Próximos Eventos</h2>
+				<p class="section-label"><?php echo esc_html( iibpr_get( 'iibpr_eventos_upcoming_label', 'Agenda' ) ); ?></p>
+				<h2 class="text-3xl font-extrabold text-gray-900 mt-2"><?php echo esc_html( iibpr_get( 'iibpr_eventos_upcoming_title', 'Próximos Eventos' ) ); ?></h2>
 			</div>
 
 			<?php if ( $upcoming->have_posts() ) : ?>
@@ -103,7 +122,6 @@ $past = new WP_Query( array(
 				<?php endwhile; wp_reset_postdata(); ?>
 			</div>
 			<?php else : ?>
-			<!-- Fallback: Customizer events -->
 			<div class="grid md:grid-cols-3 gap-8">
 				<?php for ( $i = 1; $i <= 3; $i++ ) :
 					$ev_title = iibpr_get( "iibpr_event_{$i}_title" );
@@ -132,8 +150,8 @@ $past = new WP_Query( array(
 	<section class="py-20 px-4 md:px-8 bg-white">
 		<div class="max-w-4xl mx-auto">
 			<div class="text-center mb-14">
-				<p class="section-label">Histórico</p>
-				<h2 class="text-3xl font-extrabold text-gray-900 mt-2">Eventos Realizados</h2>
+				<p class="section-label"><?php echo esc_html( iibpr_get( 'iibpr_eventos_past_label', 'Histórico' ) ); ?></p>
+				<h2 class="text-3xl font-extrabold text-gray-900 mt-2"><?php echo esc_html( iibpr_get( 'iibpr_eventos_past_title', 'Eventos Realizados' ) ); ?></h2>
 			</div>
 
 			<?php if ( $past->have_posts() ) : ?>
@@ -143,7 +161,6 @@ $past = new WP_Query( array(
 				<?php endwhile; wp_reset_postdata(); ?>
 			</div>
 			<?php else : ?>
-			<!-- Fallback: past events from real history -->
 			<div class="grid md:grid-cols-3 gap-8">
 				<?php
 				$past_events = array(

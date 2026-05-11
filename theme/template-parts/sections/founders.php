@@ -3,6 +3,7 @@
  * Template Part: Founders Section — Real photos and bios
  */
 $img_base = get_template_directory_uri() . '/images/';
+$f_photo_defaults = array( 1 => 'fabiane2.png', 2 => 'augusto2.jpg', 3 => 'mauro-quadrado.jpg' );
 ?>
 <section class="section-padding bg-white">
 	<div class="container-narrow">
@@ -14,40 +15,20 @@ $img_base = get_template_directory_uri() . '/images/';
 		</div>
 
 		<div class="grid md:grid-cols-3 gap-8">
-
-			<!-- Fabiane -->
-			<div class="text-center group fade-up fade-up-delay-1">
+			<?php for ( $fi = 1; $fi <= 3; $fi++ ) :
+				$f_photo = iibpr_get( "iibpr_founder_{$fi}_photo" );
+			?>
+			<div class="text-center group fade-up fade-up-delay-<?php echo $fi; ?>">
 				<div class="w-40 h-40 mx-auto mb-5 rounded-full overflow-hidden border-4 border-iibpr-green/20 group-hover:border-iibpr-green transition-colors duration-300">
-					<img src="<?php echo esc_url( $img_base . 'fabiane2.png' ); ?>" alt="Fabiane Alves Crispim"
+					<img src="<?php echo $f_photo ? esc_url( $f_photo ) : esc_url( $img_base . $f_photo_defaults[ $fi ] ); ?>"
+					     alt="<?php echo esc_attr( iibpr_get( "iibpr_founder_{$fi}_name", '' ) ); ?>"
 					     class="w-full h-full object-cover" loading="lazy">
 				</div>
-				<h3 class="text-xl font-bold text-gray-900">Fabiane Alves Crispim</h3>
-				<p class="text-iibpr-green font-medium text-sm mb-3">Presidente do IIBPR</p>
-				<p class="text-gray-600 text-sm leading-relaxed">Pedagoga, Psicóloga, Psicomotricista Relacional. Mestranda em Psicomotricidade pela Universidade de Évora, Portugal.</p>
+				<h3 class="text-xl font-bold text-gray-900"><?php echo esc_html( iibpr_get( "iibpr_founder_{$fi}_name", '' ) ); ?></h3>
+				<p class="text-iibpr-green font-medium text-sm mb-3"><?php echo esc_html( iibpr_get( "iibpr_founder_{$fi}_role_detail", '' ) ); ?></p>
+				<p class="text-gray-600 text-sm leading-relaxed"><?php echo wp_kses_post( iibpr_get( "iibpr_founder_{$fi}_bio_short", '' ) ); ?></p>
 			</div>
-
-			<!-- Augusto -->
-			<div class="text-center group fade-up fade-up-delay-2">
-				<div class="w-40 h-40 mx-auto mb-5 rounded-full overflow-hidden border-4 border-iibpr-green/20 group-hover:border-iibpr-green transition-colors duration-300">
-					<img src="<?php echo esc_url( $img_base . 'augusto2.jpg' ); ?>" alt="Augusto Parras Albuquerque"
-					     class="w-full h-full object-cover" loading="lazy">
-				</div>
-				<h3 class="text-xl font-bold text-gray-900">Augusto Parras Albuquerque</h3>
-				<p class="text-iibpr-green font-medium text-sm mb-3">Vice-Presidente do IIBPR</p>
-				<p class="text-gray-600 text-sm leading-relaxed">Presidente da ABP Centro-Oeste. Doutorando em Psicomotricidade pela Universidade de Évora, Portugal.</p>
-			</div>
-
-			<!-- Mauro Vecchiato -->
-			<div class="text-center group fade-up fade-up-delay-3">
-				<div class="w-40 h-40 mx-auto mb-5 rounded-full overflow-hidden border-4 border-iibpr-green/20 group-hover:border-iibpr-green transition-colors duration-300">
-					<img src="<?php echo esc_url( $img_base . 'mauro-quadrado.jpg' ); ?>" alt="Prof. Dr. Mauro Vecchiato"
-					     class="w-full h-full object-cover" loading="lazy">
-				</div>
-				<h3 class="text-xl font-bold text-gray-900">Prof. Dr. Mauro Vecchiato</h3>
-				<p class="text-iibpr-green font-medium text-sm mb-3">Diretor Científico — IIPR Itália</p>
-				<p class="text-gray-600 text-sm leading-relaxed">Referência mundial em Psicomotricidade Relacional Psicodinâmica. Autor de obras fundamentais sobre intervenção psicocorporal.</p>
-			</div>
-
+			<?php endfor; ?>
 		</div>
 
 		<!-- Team photo strip -->

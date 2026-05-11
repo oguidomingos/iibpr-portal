@@ -10,8 +10,8 @@ get_header(); ?>
 	<!-- Hero -->
 	<section class="bg-primary-gradient py-16 px-4 md:px-8 text-white text-center -mt-[72px] pt-[92px]">
 		<div class="max-w-4xl mx-auto">
-			<h1 class="text-3xl md:text-4xl font-extrabold mb-2">Área do Aluno</h1>
-			<p class="text-lg opacity-90">Acesse seus cursos e materiais.</p>
+			<h1 class="text-3xl md:text-4xl font-extrabold mb-2"><?php echo esc_html( iibpr_get( 'iibpr_aluno_hero_title', 'Área do Aluno' ) ); ?></h1>
+			<p class="text-lg opacity-90"><?php echo esc_html( iibpr_get( 'iibpr_aluno_hero_subtitle', 'Acesse seus cursos e materiais.' ) ); ?></p>
 		</div>
 	</section>
 
@@ -48,25 +48,19 @@ get_header(); ?>
 				</div>
 
 				<div class="grid sm:grid-cols-3 gap-6">
-					<a href="#" class="pillar-card no-underline fade-up fade-up-delay-1">
-						<div class="text-3xl mb-3">📚</div>
-						<h3 class="text-lg font-bold text-gray-900">Meus Cursos</h3>
-						<p class="text-gray-500 text-sm mt-2">Em breve</p>
+					<?php for ( $ci = 1; $ci <= 3; $ci++ ) :
+						$card_url = ( $ci === 1 ) ? iibpr_get( 'iibpr_aluno_lms_url', '#' ) : '#';
+					?>
+					<a href="<?php echo esc_url( $card_url ); ?>" class="pillar-card no-underline fade-up fade-up-delay-<?php echo $ci; ?>">
+						<div class="text-3xl mb-3"><?php echo esc_html( iibpr_get( "iibpr_aluno_card_{$ci}_icon", '' ) ); ?></div>
+						<h3 class="text-lg font-bold text-gray-900"><?php echo esc_html( iibpr_get( "iibpr_aluno_card_{$ci}_title", '' ) ); ?></h3>
+						<p class="text-gray-500 text-sm mt-2"><?php echo esc_html( iibpr_get( "iibpr_aluno_card_{$ci}_status", 'Em breve' ) ); ?></p>
 					</a>
-					<a href="#" class="pillar-card no-underline fade-up fade-up-delay-2">
-						<div class="text-3xl mb-3">🎓</div>
-						<h3 class="text-lg font-bold text-gray-900">Certificados</h3>
-						<p class="text-gray-500 text-sm mt-2">Em breve</p>
-					</a>
-					<a href="#" class="pillar-card no-underline fade-up fade-up-delay-3">
-						<div class="text-3xl mb-3">📅</div>
-						<h3 class="text-lg font-bold text-gray-900">Eventos</h3>
-						<p class="text-gray-500 text-sm mt-2">Em breve</p>
-					</a>
+					<?php endfor; ?>
 				</div>
 
 				<div class="mt-8 p-6 bg-amber-50 border border-amber-200 rounded-xl text-center fade-up">
-					<p class="text-amber-700">A integração com o ambiente de aprendizagem (LMS) está em desenvolvimento. Em breve você poderá acessar seus cursos e materiais por aqui.</p>
+					<p class="text-amber-700"><?php echo wp_kses_post( iibpr_get( 'iibpr_aluno_lms_notice', 'A integração com o ambiente de aprendizagem (LMS) está em desenvolvimento. Em breve você poderá acessar seus cursos e materiais por aqui.' ) ); ?></p>
 				</div>
 
 				<div class="text-center mt-8">

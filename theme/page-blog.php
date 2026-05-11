@@ -18,8 +18,8 @@ $posts_query = new WP_Query( array(
 	<!-- Hero -->
 	<section class="bg-iibpr-charcoal py-20 px-4 md:px-8 text-white text-center -mt-[72px] pt-[92px]">
 		<div class="max-w-4xl mx-auto">
-			<h1 class="text-4xl md:text-5xl font-extrabold mb-4">Blog</h1>
-			<p class="text-xl opacity-90">Artigos, novidades e reflexões sobre psicomotricidade relacional.</p>
+			<h1 class="text-4xl md:text-5xl font-extrabold mb-4"><?php echo esc_html( iibpr_get( 'iibpr_blog_hero_title', 'Blog' ) ); ?></h1>
+			<p class="text-xl opacity-90"><?php echo esc_html( iibpr_get( 'iibpr_blog_hero_subtitle', 'Artigos, novidades e reflexões sobre psicomotricidade relacional.' ) ); ?></p>
 		</div>
 	</section>
 

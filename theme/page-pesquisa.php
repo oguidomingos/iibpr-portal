@@ -8,10 +8,19 @@ get_header(); ?>
 <main id="main" class="site-main">
 
 	<!-- Hero -->
+	<?php
+	$img     = get_template_directory_uri() . '/images/';
+	$hero_bg = iibpr_get( 'iibpr_pesquisa_hero_bg' );
+	?>
+	<?php if ( $hero_bg ) : ?>
+	<section class="py-20 px-4 md:px-8 text-white text-center -mt-[72px] pt-[92px] relative overflow-hidden"
+	         style="background-image: linear-gradient(135deg, rgba(64,72,86,0.88) 0%, rgba(58,90,42,0.82) 100%), url('<?php echo esc_url( $hero_bg ); ?>'); background-size: cover; background-position: center;">
+	<?php else : ?>
 	<section class="bg-iibpr-charcoal py-20 px-4 md:px-8 text-white text-center -mt-[72px] pt-[92px]">
-		<div class="max-w-4xl mx-auto">
-			<h1 class="text-4xl md:text-5xl font-extrabold mb-4">Pesquisa Científica</h1>
-			<p class="text-xl opacity-90">Contribuições para o avanço da psicomotricidade relacional no Brasil e no mundo.</p>
+	<?php endif; ?>
+		<div class="max-w-4xl mx-auto relative z-10">
+			<h1 class="text-4xl md:text-5xl font-extrabold mb-4"><?php echo esc_html( iibpr_get( 'iibpr_pesquisa_hero_title', 'Pesquisa Científica' ) ); ?></h1>
+			<p class="text-xl opacity-90"><?php echo esc_html( iibpr_get( 'iibpr_pesquisa_hero_subtitle', 'Contribuições para o avanço da psicomotricidade relacional no Brasil e no mundo.' ) ); ?></p>
 		</div>
 	</section>
 
@@ -20,15 +29,15 @@ get_header(); ?>
 		<div class="container-narrow">
 			<div class="grid md:grid-cols-3 gap-8 text-center mb-16">
 				<div class="pillar-card fade-up">
-					<div class="stat-number counter-animate" data-target="120" data-suffix="+">0+</div>
+					<div class="stat-number counter-animate" data-target="<?php echo esc_attr( iibpr_get( 'iibpr_stats_articles', '120' ) ); ?>" data-suffix="+">0+</div>
 					<div class="stat-label mt-2">Artigos Publicados</div>
 				</div>
 				<div class="pillar-card fade-up fade-up-delay-1">
-					<div class="stat-number counter-animate" data-target="35" data-suffix="+">0+</div>
+					<div class="stat-number counter-animate" data-target="<?php echo esc_attr( iibpr_get( 'iibpr_stats_books', '35' ) ); ?>" data-suffix="+">0+</div>
 					<div class="stat-label mt-2">Livros e Capítulos</div>
 				</div>
 				<div class="pillar-card fade-up fade-up-delay-2">
-					<div class="stat-number counter-animate" data-target="50" data-suffix="+">0+</div>
+					<div class="stat-number counter-animate" data-target="<?php echo esc_attr( iibpr_get( 'iibpr_stats_congresses', '50' ) ); ?>" data-suffix="+">0+</div>
 					<div class="stat-label mt-2">Congressos e Eventos</div>
 				</div>
 			</div>

@@ -10,12 +10,15 @@ get_header(); ?>
 <main id="main" class="site-main">
 
 	<!-- Hero with real photo -->
-	<?php $img = get_template_directory_uri() . '/images/'; ?>
+	<?php
+	$img     = get_template_directory_uri() . '/images/';
+	$hero_bg = iibpr_get( 'iibpr_cursos_hero_bg' );
+	?>
 	<section class="py-20 px-4 md:px-8 text-white text-center -mt-[72px] pt-[92px] relative overflow-hidden"
-	         style="background-image: linear-gradient(135deg, rgba(64,72,86,0.88) 0%, rgba(58,90,42,0.82) 100%), url('<?php echo esc_url( $img . 'acao-formacao-4.jpg' ); ?>'); background-size: cover; background-position: center;">
+	         style="background-image: linear-gradient(135deg, rgba(64,72,86,0.88) 0%, rgba(58,90,42,0.82) 100%), url('<?php echo $hero_bg ? esc_url( $hero_bg ) : esc_url( $img . 'acao-formacao-4.jpg' ); ?>'); background-size: cover; background-position: center;">
 		<div class="max-w-4xl mx-auto relative z-10">
-			<h1 class="text-4xl md:text-5xl font-extrabold mb-4">Nossos Cursos</h1>
-			<p class="text-xl opacity-90">Formações reconhecidas em psicomotricidade relacional para profissionais de todas as áreas.</p>
+			<h1 class="text-4xl md:text-5xl font-extrabold mb-4"><?php echo esc_html( iibpr_get( 'iibpr_cursos_hero_title', 'Nossos Cursos' ) ); ?></h1>
+			<p class="text-xl opacity-90"><?php echo esc_html( iibpr_get( 'iibpr_cursos_hero_subtitle', 'Formações reconhecidas em psicomotricidade relacional para profissionais de todas as áreas.' ) ); ?></p>
 		</div>
 	</section>
 

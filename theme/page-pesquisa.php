@@ -24,6 +24,82 @@ get_header(); ?>
 		</div>
 	</section>
 
+	<!-- Researchers Profiles -->
+	<section class="section-padding bg-white">
+		<div class="container-narrow">
+			<div class="text-center mb-14">
+				<p class="section-label">Pesquisadores</p>
+				<h2 class="section-title">As Pessoas por Trás da Pesquisa</h2>
+				<p class="section-subtitle">Conheça os pesquisadores que desenvolvem a metodologia IIBPR com rigor científico.</p>
+			</div>
+
+			<?php
+			$img = get_template_directory_uri() . '/images/';
+			$researchers = array(
+				array(
+					'name'        => 'Dra. Fabiane Alves Crispim',
+					'role'        => 'Fundadora e Pesquisadora-Chefe',
+					'photo'       => iibpr_get( 'iibpr_founder_1_photo' ) ?: $img . 'fabiane2.png',
+					'education'   => 'Pedagogia • Psicopedagogia • Mestrado em Psicomotricidade (Universidade de Évora, Portugal)',
+					'research'    => 'Psicomotricidade Relacional Psicodinâmica • Desenvolvimento Integral Infantil • Educação Somática',
+					'bio'         => 'Com mais de 19 anos dedicados ao estudo e desenvolvimento da Psicomotricidade Relacional, Fabiane é referência na região Centro-Oeste. Sua pesquisa integra saberes da educação, psicologia e neurociência para propor intervenções baseadas em evidências científicas.',
+					'lattes'      => '#',
+				),
+				array(
+					'name'        => 'Dr. Augusto Parras Albuquerque',
+					'role'        => 'Pesquisador-Colaborador',
+					'photo'       => iibpr_get( 'iibpr_founder_2_photo' ) ?: $img . 'augusto2.jpg',
+					'education'   => 'Educação Física • Mestrado em Educação (UnB) • Doutoramento em Psicomotricidade (Europa)',
+					'research'    => 'Psicomotricidade em Populações Atípicas • Neuroplasticidade Corporal • Intervenção Motora Adaptada',
+					'bio'         => 'Especialista em trabalhos com populações em situação de vulnerabilidade, deficiência e transtornos do desenvolvimento. Suas pesquisas focam na aplicabilidade prática da Psicomotricidade Relacional em contextos educacionais e clínicos desafiadores.',
+					'lattes'      => '#',
+				),
+			);
+			?>
+
+			<div class="grid md:grid-cols-2 gap-10">
+				<?php foreach ( $researchers as $researcher ) : ?>
+				<div class="bg-gray-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow flex flex-col">
+					<!-- Photo -->
+					<div class="h-72 overflow-hidden bg-gray-200">
+						<img src="<?php echo esc_url( $researcher['photo'] ); ?>" alt="<?php echo esc_attr( $researcher['name'] ); ?>"
+						     class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+					</div>
+
+					<!-- Content -->
+					<div class="p-8 flex flex-col flex-1">
+						<!-- Name and Role -->
+						<h3 class="text-xl font-bold text-gray-900"><?php echo esc_html( $researcher['name'] ); ?></h3>
+						<p class="text-iibpr-green font-semibold mb-4"><?php echo esc_html( $researcher['role'] ); ?></p>
+
+						<!-- Bio -->
+						<p class="text-gray-600 leading-relaxed text-sm mb-5 flex-1">
+							<?php echo esc_html( $researcher['bio'] ); ?>
+						</p>
+
+						<!-- Education -->
+						<div class="mb-5 border-t border-gray-200 pt-4">
+							<p class="text-xs text-gray-400 font-semibold mb-2">FORMAÇÃO</p>
+							<p class="text-sm text-gray-600"><?php echo esc_html( $researcher['education'] ); ?></p>
+						</div>
+
+						<!-- Research Areas -->
+						<div class="mb-5">
+							<p class="text-xs text-gray-400 font-semibold mb-2">LINHAS DE PESQUISA</p>
+							<p class="text-sm text-gray-600"><?php echo esc_html( $researcher['research'] ); ?></p>
+						</div>
+
+						<!-- Lattes Link -->
+						<a href="<?php echo esc_url( $researcher['lattes'] ); ?>" class="text-iibpr-green font-semibold text-sm no-underline hover:underline inline-block">
+							Currículo Lattes →
+						</a>
+					</div>
+				</div>
+				<?php endforeach; ?>
+			</div>
+		</div>
+	</section>
+
 	<!-- Stats -->
 	<section class="section-padding bg-warm-white">
 		<div class="container-narrow">

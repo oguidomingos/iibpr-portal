@@ -6,22 +6,22 @@
 $img_base = get_template_directory_uri() . '/images/';
 $cards = array(
     array(
-        'image' => $img_base . 'acao-formacao-2.jpg',
+        'image' => $img_base . 'para-quem-educadores.jpg',
         'title' => 'Educadores',
         'desc'  => 'Professores e pedagogos que desejam ampliar suas ferramentas de intervenção com o corpo e o movimento.',
     ),
     array(
-        'image' => $img_base . 'acao-grupo-2.jpg',
+        'image' => $img_base . 'para-quem-saude.jpg',
         'title' => 'Profissionais de Saúde',
         'desc'  => 'Psicólogos, fisioterapeutas e terapeutas ocupacionais em busca de abordagens corporais e relacionais.',
     ),
     array(
-        'image' => $img_base . 'acao-movimento-2.jpg',
+        'image' => $img_base . 'para-quem-estudantes.jpg',
         'title' => 'Estudantes',
         'desc'  => 'Graduandos em psicologia, educação e áreas da saúde que buscam formação complementar.',
     ),
     array(
-        'image' => $img_base . 'acao-formacao-4.jpg',
+        'image' => $img_base . 'para-quem-pesquisadores.jpg',
         'title' => 'Pesquisadores',
         'desc'  => 'Acadêmicos interessados em pesquisa científica sobre corpo, movimento e relação.',
     ),

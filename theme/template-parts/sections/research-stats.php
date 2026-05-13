@@ -46,17 +46,24 @@ $stats = array(
 			<?php endforeach; ?>
 		</div>
 
-		<!-- Mauro Vecchiato book highlight -->
-		<div class="mt-16 flex flex-col md:flex-row items-center gap-8 bg-white/10 backdrop-blur rounded-2xl p-8 fade-up">
-			<img src="<?php echo esc_url( $img_base . 'livro-mauro.png' ); ?>" alt="Livro Prof. Dr. Mauro Vecchiato"
-			     class="w-32 h-auto rounded-lg shadow-xl flex-shrink-0" loading="lazy">
-			<div>
-				<h3 class="text-xl font-bold mb-2">Prof. Dr. Mauro Vecchiato</h3>
-				<p class="text-gray-300 leading-relaxed">Diretor Científico do IIPR (Itália) e referência mundial em Psicomotricidade Relacional Psicodinâmica. Autor de obras fundamentais sobre a intervenção psicocorporal.</p>
+	<!-- 2º Seminário Internacional highlight -->
+	<div class="mt-16 bg-white/10 backdrop-blur rounded-2xl p-8 fade-up">
+		<div class="grid md:grid-cols-3 gap-6">
+			<div class="text-center">
+				<div class="text-4xl font-extrabold text-white mb-2">500+</div>
+				<p class="text-gray-300">Participantes</p>
 			</div>
-			<img src="<?php echo esc_url( $img_base . 'mauro-quadrado.jpg' ); ?>" alt="Prof. Dr. Mauro Vecchiato"
-			     class="w-24 h-24 rounded-full object-cover border-3 border-white/30 flex-shrink-0 hidden md:block" loading="lazy">
+			<div class="text-center">
+				<div class="text-4xl font-extrabold text-white mb-2">15</div>
+				<p class="text-gray-300">Palestrantes Internacionais</p>
+			</div>
+			<div class="text-center">
+				<div class="text-4xl font-extrabold text-white mb-2">2 dias</div>
+				<p class="text-gray-300">31 out - 1 nov 2025</p>
+			</div>
 		</div>
+		<p class="text-center text-gray-300 mt-6 leading-relaxed">O 2º Seminário Internacional de Psicomotricidade Relacional é o maior evento da região Centro-Oeste, reunindo pesquisadores, profissionais e estudantes de todo Brasil e do exterior.</p>
+	</div>
 
 		<div class="text-center mt-12 fade-up">
 			<a href="<?php echo esc_url( site_url( '/pesquisa' ) ); ?>" class="btn-secondary border-white text-white hover:bg-white hover:text-gray-900">

@@ -54,17 +54,26 @@ $posts_query = new WP_Query( array(
 
 			<!-- Pagination -->
 			<?php if ( $posts_query->max_num_pages > 1 ) : ?>
-			<div class="mt-12 flex justify-center gap-2">
+			<nav class="mt-12 flex justify-center gap-2 flex-wrap">
 				<?php
-				echo paginate_links( array(
+				$pagination = paginate_links( array(
 				    'total'     => $posts_query->max_num_pages,
 				    'current'   => $paged,
 				    'prev_text' => '&larr; Anterior',
 				    'next_text' => 'Próximo &rarr;',
-				    'type'      => 'list',
+				    'type'      => 'plain',
+				    'echo'      => false,
 				) );
+
+				// Style pagination links
+				$pagination = str_replace(
+					['<a class="page-numbers" href=', '<span aria-current="page" class="page-numbers"><span class="screen-reader-text">Página </span>', '</span>', '<span class="page-numbers">'],
+					['<a class="px-3 py-2 rounded-lg border border-gray-300 text-[#404856] hover:bg-[#6CB350] hover:text-white hover:border-[#6CB350] transition-colors text-sm font-medium" href=', '<span class="px-3 py-2 rounded-lg bg-[#6CB350] text-white text-sm font-medium">', '</span>', '<span class="px-3 py-2 rounded-lg border border-gray-300 text-gray-400 text-sm font-medium cursor-default">'],
+					$pagination
+				);
+				echo wp_kses_post( $pagination );
 				?>
-			</div>
+			</nav>
 			<?php endif; ?>
 
 			<?php wp_reset_postdata(); ?>

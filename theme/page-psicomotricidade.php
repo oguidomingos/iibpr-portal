@@ -73,31 +73,6 @@ $hero_bg = iibpr_get( 'iibpr_prp_hero_bg' );
 		</div>
 	</section>
 
-	<!-- Bases Científicas / Mauro Vecchiato -->
-	<?php
-	$mauro_photo = iibpr_get( 'iibpr_founder_3_photo' );
-	?>
-	<section class="py-20 px-4 md:px-8 bg-white">
-		<div class="max-w-4xl mx-auto">
-			<div class="text-center mb-14">
-				<p class="section-label"><?php echo esc_html( iibpr_get( 'iibpr_prp_mauro_section_label', 'Bases Científicas' ) ); ?></p>
-				<h2 class="text-3xl font-extrabold text-gray-900 mt-2"><?php echo esc_html( iibpr_get( 'iibpr_prp_mauro_section_title', 'Metodologia Prof. Dr. Mauro Vecchiato' ) ); ?></h2>
-			</div>
-
-			<div class="bg-gray-50 rounded-2xl p-8 md:flex md:items-center md:gap-8 mb-12">
-				<div class="w-40 h-40 rounded-full overflow-hidden flex-shrink-0 mx-auto md:mx-0 mb-6 md:mb-0">
-					<img src="<?php echo $mauro_photo ? esc_url( $mauro_photo ) : esc_url( $img . 'mauro-quadrado.jpg' ); ?>"
-					     alt="<?php echo esc_attr( iibpr_get( 'iibpr_founder_3_name', 'Prof. Dr. Mauro Vecchiato' ) ); ?>"
-					     class="w-full h-full object-cover" loading="lazy">
-				</div>
-				<div>
-					<h3 class="text-xl font-bold text-gray-900"><?php echo esc_html( iibpr_get( 'iibpr_founder_3_name', 'Prof. Dr. Mauro Vecchiato' ) ); ?></h3>
-					<p class="text-green-600 font-medium mb-3"><?php echo esc_html( iibpr_get( 'iibpr_founder_3_role', 'Diretor Científico — IIPR Itália' ) ); ?></p>
-					<p class="text-gray-600 leading-relaxed text-sm"><?php echo wp_kses_post( iibpr_get( 'iibpr_founder_3_bio_long', '' ) ); ?></p>
-				</div>
-			</div>
-		</div>
-	</section>
 
 	<!-- Áreas de Atuação -->
 	<section class="py-20 px-4 md:px-8 bg-gray-50">

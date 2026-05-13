@@ -4,11 +4,8 @@
  */
 $img_base = get_template_directory_uri() . '/images/';
 $partners = array(
-    array( 'name' => 'IIPR',  'desc' => 'Instituto Internacional de Psicomotricidade Relacional (Itália)', 'logo' => $img_base . 'iipr.png' ),
+    array( 'name' => 'IIPR',  'desc' => 'Instituto Internacional de Psicomotricidade Relacional — Itália', 'logo' => $img_base . 'iipr.png' ),
     array( 'name' => 'ABP',   'desc' => 'Associação Brasileira de Psicomotricidade', 'logo' => '' ),
-    array( 'name' => 'IESB',  'desc' => 'Instituto de Educação Superior de Brasília', 'logo' => '' ),
-    array( 'name' => 'Centro de Psicomotricidade', 'desc' => 'Centro de Psicomotricidade — Portugal', 'logo' => $img_base . 'centro-psicomotricidade.jpeg' ),
-    array( 'name' => 'EAM Psicomotricidade', 'desc' => 'Escola Ana Rita Matias — Portugal', 'logo' => $img_base . 'logo-psicoEAM.png' ),
 );
 ?>
 <section class="py-16 px-4 md:px-8 bg-white border-t border-gray-100">

@@ -8,11 +8,11 @@ $img = get_template_directory_uri() . '/images/';
 
 // Default images per slide
 $default_images = array(
-	1 => $img . 'acao-grupo-5.jpg',
-	2 => $img . 'mauro-palestra2.png',
-	3 => $img . 'banner3.png',
-	4 => $img . 'acao-formacao-1.jpg',
-	5 => $img . 'acao-movimento-1.jpg',
+	1 => $img . 'hero-slide-1.jpg',
+	2 => $img . 'hero-slide-2.jpg',
+	3 => $img . 'hero-slide-3.jpg',
+	4 => $img . 'hero-slide-4.jpg',
+	5 => $img . 'hero-slide-5.jpg',
 );
 
 // Slide defaults (must match customizer defaults so front-end shows them before Customizer is saved)
@@ -47,6 +47,26 @@ $slide_defaults = array(
 		'sec_label' => 'Ver Cursos',
 		'sec_url'   => '/cursos',
 	),
+	4 => array(
+		'tagline'   => 'Pesquisa e Ciência',
+		'title'     => 'Fundamentada na Neurociência e Educação Somática',
+		'subtitle'  => 'O método IIBPR é desenvolvido com base em pesquisa científica rigorosa.',
+		'desc'      => '',
+		'cta_label' => 'Conheça Nossa Pesquisa',
+		'cta_url'   => '/pesquisa',
+		'sec_label' => 'Saiba Mais',
+		'sec_url'   => '/sobre',
+	),
+	5 => array(
+		'tagline'   => 'Nossa Comunidade',
+		'title'     => 'Rede de Profissionais em Todo Brasil',
+		'subtitle'  => 'Mais de 500 profissionais formados na metodologia IIBPR.',
+		'desc'      => '',
+		'cta_label' => 'Faça Parte',
+		'cta_url'   => '#inscricao',
+		'sec_label' => 'Ver Comunidade',
+		'sec_url'   => '/comunidade',
+	),
 );
 
 // Collect active slides
@@ -80,50 +100,72 @@ $autoplay = absint( iibpr_get( 'iibpr_hero_autoplay', 6000 ) );
 		<div class="carousel-track" style="width: <?php echo $total * 100; ?>%;">
 			<?php foreach ( $slides as $idx => $slide ) : ?>
 			<div class="carousel-slide" style="flex-basis: <?php echo 100 / $total; ?>%; width: <?php echo 100 / $total; ?>%;">
-				<div class="min-h-screen flex items-center py-20 px-4 md:px-8 pt-[120px] pb-16 relative"
-				     style="background-image: linear-gradient(135deg, rgba(64,72,86,0.85) 0%, rgba(58,90,42,0.78) 60%, rgba(108,179,80,0.72) 100%), url('<?php echo esc_url( $slide['image'] ); ?>'); background-size: cover; background-position: center;">
-					<div class="max-w-5xl mx-auto text-center text-white w-full relative z-10">
+				<div class="relative min-h-screen bg-[#6CB350] overflow-hidden flex items-center">
 
-						<?php if ( $slide['tagline'] ) : ?>
-						<div class="inline-block bg-white/20 backdrop-blur-sm px-5 py-1.5 rounded-full text-sm font-medium mb-6 tracking-wide">
-							<?php echo esc_html( $slide['tagline'] ); ?>
-						</div>
-						<?php endif; ?>
+					<!-- Texture overlay (22% opacity) -->
+					<div class="absolute inset-0 bg-[url('<?php echo esc_url( $img . 'textura-fundo.jpg' ); ?>')] bg-cover bg-center opacity-[0.22] pointer-events-none z-0"></div>
 
-						<h2 class="text-4xl md:text-6xl font-extrabold leading-tight mb-5">
-							<?php echo wp_kses_post( $slide['title'] ); ?>
-						</h2>
+					<!-- 2-col layout: text left + photo right (lg+) -->
+					<div class="relative z-10 w-full grid lg:grid-cols-2 gap-0 min-h-screen items-center">
 
-						<?php if ( $slide['subtitle'] ) : ?>
-						<p class="text-xl md:text-2xl text-white/90 mb-4 max-w-3xl mx-auto">
-							<?php echo wp_kses_post( $slide['subtitle'] ); ?>
-						</p>
-						<?php endif; ?>
-
-						<?php if ( $slide['desc'] ) : ?>
-						<p class="text-base md:text-lg text-white/75 mb-8 max-w-2xl mx-auto">
-							<?php echo wp_kses_post( $slide['desc'] ); ?>
-						</p>
-						<?php endif; ?>
-
-						<?php if ( $slide['cta_label'] || $slide['sec_label'] ) : ?>
-						<div class="flex flex-col sm:flex-row gap-4 justify-center <?php echo $slide['desc'] ? '' : 'mt-8'; ?>">
-							<?php if ( $slide['cta_label'] ) : ?>
-							<a href="<?php echo esc_url( $slide['cta_url'] ); ?>"
-							   class="bg-white text-iibpr-charcoal px-8 py-4 rounded-full text-lg font-bold hover:bg-gray-100 shadow-2xl transition-all hover:-translate-y-1 text-center no-underline">
-								<?php echo esc_html( $slide['cta_label'] ); ?>
-							</a>
+						<!-- LEFT: Conteúdo -->
+						<div class="flex flex-col justify-center px-8 md:px-16 py-24 pt-[140px]">
+							<?php if ( $slide['tagline'] ) : ?>
+							<div class="inline-block bg-white/20 backdrop-blur-sm px-5 py-1.5 rounded-full text-sm font-medium mb-6 tracking-wide w-fit">
+								<span class="text-white"><?php echo esc_html( $slide['tagline'] ); ?></span>
+							</div>
 							<?php endif; ?>
-							<?php if ( $slide['sec_label'] ) : ?>
-							<a href="<?php echo esc_url( $slide['sec_url'] ); ?>"
-							   class="border-2 border-white/70 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/10 transition-all text-center no-underline">
-								<?php echo esc_html( $slide['sec_label'] ); ?>
-							</a>
+
+							<h2 class="text-4xl md:text-6xl font-extrabold leading-tight mb-5 text-white font-serif">
+								<?php echo wp_kses_post( $slide['title'] ); ?>
+							</h2>
+
+							<?php if ( $slide['subtitle'] ) : ?>
+							<p class="text-xl md:text-2xl text-white/90 mb-4">
+								<?php echo wp_kses_post( $slide['subtitle'] ); ?>
+							</p>
+							<?php endif; ?>
+
+							<?php if ( $slide['desc'] ) : ?>
+							<p class="text-base md:text-lg text-white/75 mb-8">
+								<?php echo wp_kses_post( $slide['desc'] ); ?>
+							</p>
+							<?php endif; ?>
+
+							<?php if ( $slide['cta_label'] || $slide['sec_label'] ) : ?>
+							<div class="flex flex-col sm:flex-row gap-4 <?php echo $slide['desc'] ? '' : 'mt-8'; ?>">
+								<?php if ( $slide['cta_label'] ) : ?>
+								<a href="<?php echo esc_url( $slide['cta_url'] ); ?>"
+								   class="bg-white text-[#6CB350] px-8 py-4 rounded-full text-lg font-bold hover:bg-gray-100 shadow-2xl transition-all hover:-translate-y-1 text-center no-underline inline-block">
+									<?php echo esc_html( $slide['cta_label'] ); ?>
+								</a>
+								<?php endif; ?>
+								<?php if ( $slide['sec_label'] ) : ?>
+								<a href="<?php echo esc_url( $slide['sec_url'] ); ?>"
+								   class="border-2 border-white/70 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/10 transition-all text-center no-underline inline-block">
+									<?php echo esc_html( $slide['sec_label'] ); ?>
+								</a>
+								<?php endif; ?>
+							</div>
 							<?php endif; ?>
 						</div>
-						<?php endif; ?>
+
+						<!-- RIGHT: Foto frame (hidden abaixo de lg) -->
+						<div class="hidden lg:flex items-center justify-center px-8 py-16">
+							<div class="relative w-[560px] h-[700px] rounded-xl overflow-hidden shadow-2xl">
+								<img src="<?php echo esc_url( $slide['image'] ); ?>" class="w-full h-full object-cover" alt="Slide">
+								<!-- Gradient overlay horizontal: direita → #6CB350 -->
+								<div class="absolute inset-0 bg-gradient-to-r from-transparent via-[#6CB350]/30 to-[#6CB350]/80 pointer-events-none"></div>
+							</div>
+						</div>
 
 					</div>
+
+					<!-- Mobile: foto como bg fullscreen (abaixo de lg) -->
+					<div class="lg:hidden absolute inset-0 z-[-1]">
+						<img src="<?php echo esc_url( $slide['image'] ); ?>" class="w-full h-full object-cover opacity-30" alt="Slide">
+					</div>
+
 				</div>
 			</div>
 			<?php endforeach; ?>

@@ -18,12 +18,12 @@ $area_name     = ( $areas && ! is_wp_error( $areas ) ) ? $areas[0]->name : '';
          data-level="<?php echo esc_attr( $level_name ); ?>"
          data-area="<?php echo esc_attr( $area_name ); ?>">
 
-	<!-- Photo zone (h-52 ~208px) -->
-	<div class="relative h-52 overflow-hidden flex-shrink-0">
+	<!-- Photo zone -->
+	<div class="relative h-48 overflow-hidden flex-shrink-0 course-card-media">
 
 		<?php if ( has_post_thumbnail() ) : ?>
 		<!-- Real thumbnail -->
-		<?php the_post_thumbnail( 'medium_large', array( 'class' => 'w-full h-full object-cover', 'loading' => 'lazy' ) ); ?>
+		<?php the_post_thumbnail( 'medium_large', array( 'class' => 'course-card-image', 'loading' => 'lazy' ) ); ?>
 		<?php else : ?>
 		<!-- Fallback: branded course cover template -->
 		<?php
@@ -39,17 +39,17 @@ $area_name     = ( $areas && ! is_wp_error( $areas ) ) ? $areas[0]->name : '';
 		?>
 		<?php endif; ?>
 
-		<!-- Gradient overlay (bottom fade to green) -->
-		<div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#6CB350]/30 to-[#6CB350]/80 pointer-events-none"></div>
+		<!-- Gradient overlay (minimal — thumbnails already have brand overlays) -->
+		<div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to bottom, transparent 70%, rgba(0,0,0,0.3));"></div>
 
 		<!-- Logo pill top-left (over photo) -->
-		<div class="absolute top-3 left-3 bg-white/95 px-3 py-1.5 rounded-full text-xs font-bold text-[#6CB350] backdrop-blur-sm shadow-sm">
+		<div class="absolute top-3 left-3 bg-white/95 px-3 py-1.5 rounded-full text-xs font-bold text-iibpr-green backdrop-blur-sm shadow-sm">
 			IIBPR
 		</div>
 
 		<!-- Level badge top-right -->
 		<?php if ( $level_name ) : ?>
-		<div class="absolute top-3 right-3 bg-[#A6D16C] px-3 py-1.5 rounded-full text-xs font-bold text-white">
+		<div class="absolute top-3 right-3 bg-iibpr-light px-3 py-1.5 rounded-full text-xs font-bold text-white">
 			<?php echo esc_html( $level_name ); ?>
 		</div>
 		<?php endif; ?>
@@ -67,15 +67,15 @@ $area_name     = ( $areas && ! is_wp_error( $areas ) ) ? $areas[0]->name : '';
 	<div class="p-5 flex flex-col flex-1">
 
 		<!-- Title -->
-		<h3 class="text-lg font-bold text-[#404856] mb-2 font-serif line-clamp-2">
-			<a href="<?php the_permalink(); ?>" class="no-underline text-[#404856] hover:text-[#6CB350] transition-colors">
+		<h3 class="text-lg font-bold text-iibpr-charcoal mb-2 font-serif line-clamp-2">
+			<a href="<?php the_permalink(); ?>" class="no-underline text-iibpr-charcoal hover:text-iibpr-green transition-colors">
 				<?php the_title(); ?>
 			</a>
 		</h3>
 
 		<!-- Excerpt -->
 		<?php if ( has_excerpt() ) : ?>
-		<p class="text-[#6B7280] text-sm leading-relaxed flex-1 line-clamp-3"><?php echo esc_html( get_the_excerpt() ); ?></p>
+		<p class="text-gray-500 text-sm leading-relaxed flex-1 line-clamp-3"><?php echo esc_html( get_the_excerpt() ); ?></p>
 		<?php endif; ?>
 
 		<!-- Area tag (small, gray) -->
@@ -86,11 +86,11 @@ $area_name     = ( $areas && ! is_wp_error( $areas ) ) ? $areas[0]->name : '';
 		<!-- CTA bar: price + button -->
 		<div class="mt-4 flex items-center justify-between gap-2">
 			<?php if ( $price ) : ?>
-			<span class="text-lg font-extrabold text-[#404856]"><?php echo esc_html( $price ); ?></span>
+			<span class="text-lg font-extrabold text-iibpr-charcoal"><?php echo esc_html( $price ); ?></span>
 			<?php else : ?>
 			<span></span>
 			<?php endif; ?>
-			<a href="<?php echo esc_url( $cta_url ?: get_the_permalink() ); ?>" class="bg-[#6CB350] text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-[#5a9e43] transition-colors no-underline">
+			<a href="<?php echo esc_url( $cta_url ?: get_the_permalink() ); ?>" class="bg-iibpr-green text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-iibpr-green-dark transition-colors no-underline">
 				Saiba Mais
 			</a>
 		</div>

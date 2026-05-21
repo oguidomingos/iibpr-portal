@@ -16,10 +16,15 @@ $posts_query = new WP_Query( array(
 <main id="main" class="site-main">
 
 	<!-- Hero -->
-	<section class="bg-iibpr-charcoal py-20 px-4 md:px-8 text-white text-center -mt-[72px] pt-[92px]">
-		<div class="max-w-4xl mx-auto">
-			<h1 class="text-4xl md:text-5xl font-extrabold mb-4"><?php echo esc_html( iibpr_get( 'iibpr_blog_hero_title', 'Blog' ) ); ?></h1>
-			<p class="text-xl opacity-90"><?php echo esc_html( iibpr_get( 'iibpr_blog_hero_subtitle', 'Artigos, novidades e reflexões sobre psicomotricidade relacional.' ) ); ?></p>
+	<?php
+	$img     = get_template_directory_uri() . '/images/';
+	$hero_bg = iibpr_get( 'iibpr_blog_hero_bg' );
+	?>
+	<section id="blog-hero" class="py-20 px-4 md:px-8 text-white text-center -mt-[72px] pt-[92px] relative overflow-hidden"
+	         style="background-image: linear-gradient(135deg, rgba(64,72,86,0.88) 0%, rgba(58,90,42,0.82) 100%), url('<?php echo $hero_bg ? esc_url( $hero_bg ) : esc_url( $img . 'acao-grupo-2.jpg' ); ?>'); background-size: cover; background-position: center;">
+		<div class="max-w-4xl mx-auto relative z-10">
+			<h1 class="text-4xl md:text-5xl font-extrabold mb-4 page-hero-title"><?php echo esc_html( iibpr_get( 'iibpr_blog_hero_title', 'Blog' ) ); ?></h1>
+			<p class="text-xl opacity-90 page-hero-subtitle"><?php echo esc_html( iibpr_get( 'iibpr_blog_hero_subtitle', 'Artigos, novidades e reflexões sobre psicomotricidade relacional.' ) ); ?></p>
 		</div>
 	</section>
 
@@ -30,11 +35,17 @@ $posts_query = new WP_Query( array(
 			<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
 				<?php while ( $posts_query->have_posts() ) : $posts_query->the_post(); ?>
 				<article class="card-hover overflow-hidden fade-up">
-					<?php if ( has_post_thumbnail() ) : ?>
 					<div class="h-48 overflow-hidden">
+						<?php if ( has_post_thumbnail() ) : ?>
 						<?php the_post_thumbnail( 'medium_large', array( 'class' => 'w-full h-full object-cover hover:scale-105 transition-transform duration-300', 'loading' => 'lazy' ) ); ?>
+						<?php else : ?>
+						<div class="w-full h-full bg-gradient-to-br from-iibpr-green to-iibpr-green-dark flex items-center justify-center">
+							<svg class="w-12 h-12 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+							</svg>
+						</div>
+						<?php endif; ?>
 					</div>
-					<?php endif; ?>
 					<div class="p-6">
 						<?php $cats = get_the_category(); if ( $cats ) : ?>
 						<span class="course-card-badge bg-green-100 text-green-700 mb-3"><?php echo esc_html( $cats[0]->name ); ?></span>
@@ -54,24 +65,14 @@ $posts_query = new WP_Query( array(
 
 			<!-- Pagination -->
 			<?php if ( $posts_query->max_num_pages > 1 ) : ?>
-			<nav class="mt-12 flex justify-center gap-2 flex-wrap">
+			<nav class="pagination-nav">
 				<?php
-				$pagination = paginate_links( array(
-				    'total'     => $posts_query->max_num_pages,
-				    'current'   => $paged,
-				    'prev_text' => '&larr; Anterior',
-				    'next_text' => 'Próximo &rarr;',
-				    'type'      => 'plain',
-				    'echo'      => false,
+				echo paginate_links( array(
+					'total'     => $posts_query->max_num_pages,
+					'current'   => $paged,
+					'prev_text' => '&larr; Anterior',
+					'next_text' => 'Próximo &rarr;',
 				) );
-
-				// Style pagination links
-				$pagination = str_replace(
-					['<a class="page-numbers" href=', '<span aria-current="page" class="page-numbers"><span class="screen-reader-text">Página </span>', '</span>', '<span class="page-numbers">'],
-					['<a class="px-3 py-2 rounded-lg border border-gray-300 text-[#404856] hover:bg-[#6CB350] hover:text-white hover:border-[#6CB350] transition-colors text-sm font-medium" href=', '<span class="px-3 py-2 rounded-lg bg-[#6CB350] text-white text-sm font-medium">', '</span>', '<span class="px-3 py-2 rounded-lg border border-gray-300 text-gray-400 text-sm font-medium cursor-default">'],
-					$pagination
-				);
-				echo wp_kses_post( $pagination );
 				?>
 			</nav>
 			<?php endif; ?>

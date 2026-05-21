@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Part: Hero Carousel — dynamic slides configurable via Customizer.
+ * Template Part: Hero Carousel — full-bleed background with overlay gradient.
  *
  * Uses the same carousel JS infrastructure (.carousel-wrapper / .carousel-track / .carousel-slide).
  */
@@ -15,56 +15,56 @@ $default_images = array(
 	5 => $img . 'hero-slide-5.jpg',
 );
 
-// Slide defaults (must match customizer defaults so front-end shows them before Customizer is saved)
+// Slide defaults
 $slide_defaults = array(
 	1 => array(
+		'tagline'   => 'Formação · Pesquisa · Extensão',
+		'title'     => 'Instituto Internacional de Psicomotricidade Relacional',
+		'subtitle'  => 'Formação reconhecida em psicomotricidade relacional para profissionais de todas as áreas.',
+		'desc'      => '',
+		'cta_label' => 'Conheça o IIBPR',
+		'cta_url'   => '/sobre',
+		'sec_label' => 'Ver Cursos',
+		'sec_url'   => '/cursos',
+	),
+	2 => array(
 		'tagline'   => 'Pós-Graduação IESB',
-		'title'     => 'Inscrições Abertas para a Formação em Psicomotricidade',
-		'subtitle'  => 'Especialização de 420h em parceria com o IESB — certificação nacional e internacional',
+		'title'     => 'Pós-Graduação em Psicomotricidade Relacional',
+		'subtitle'  => 'IESB — Brasília, DF · Especialização de 420h com professores Psicomotricistas',
 		'desc'      => '',
 		'cta_label' => 'Quero Garantir Minha Vaga',
 		'cta_url'   => '#inscricao',
 		'sec_label' => 'Conheça os Cursos',
 		'sec_url'   => '/cursos',
 	),
-	2 => array(
-		'tagline'   => 'Curso Básico',
-		'title'     => 'Curso Básico de Grafomotricidade',
-		'subtitle'  => 'Com Dra. Ana Rita Matias · 20h · Análise e intervenção grafomotora',
-		'desc'      => '',
-		'cta_label' => 'Saiba Mais',
-		'cta_url'   => '/cursos',
-		'sec_label' => 'Ver Cursos',
-		'sec_url'   => '/cursos',
-	),
 	3 => array(
-		'tagline'   => 'Seminário Online',
-		'title'     => 'Seminário Teórico e Didático I — PRP',
-		'subtitle'  => 'Certificado de 20h · e-book + textos científicos inclusos',
+		'tagline'   => 'Coordenadora Acadêmica',
+		'title'     => 'Dra. Fabiane Lagranha',
+		'subtitle'  => '"O corpo é o primeiro instrumento de aprendizagem da criança."',
 		'desc'      => '',
-		'cta_label' => 'Saiba Mais',
-		'cta_url'   => '/cursos',
+		'cta_label' => 'Conheça a Equipe',
+		'cta_url'   => '/sobre',
 		'sec_label' => 'Ver Cursos',
 		'sec_url'   => '/cursos',
 	),
 	4 => array(
-		'tagline'   => 'Seminário Online',
-		'title'     => 'Seminário Teórico e Didático II — PRP',
-		'subtitle'  => 'Continuação da formação teórica em Psicomotricidade Relacional',
+		'tagline'   => 'Diretor do IIBPR',
+		'title'     => 'Prof. Augusto Lagranha',
+		'subtitle'  => '"A psicomotricidade relacional transforma vidas através do corpo."',
 		'desc'      => '',
-		'cta_label' => 'Saiba Mais',
-		'cta_url'   => '/cursos',
+		'cta_label' => 'Conheça a Equipe',
+		'cta_url'   => '/sobre',
 		'sec_label' => 'Ver Cursos',
 		'sec_url'   => '/cursos',
 	),
 	5 => array(
-		'tagline'   => '2º Seminário Internacional',
-		'title'     => 'O Maior Evento de Psicomotricidade do Centro-Oeste',
-		'subtitle'  => '31 out e 1 nov 2025 · Campus IESB Asa Sul · +500 participantes · 15 palestrantes',
+		'tagline'   => 'Mais de 25 anos dedicados à PR',
+		'title'     => 'Conheça Nossos Fundadores',
+		'subtitle'  => 'Referência na formação de psicomotricistas relacionais no Brasil e no mundo.',
 		'desc'      => '',
-		'cta_label' => 'Saiba Mais',
-		'cta_url'   => '/eventos',
-		'sec_label' => 'Ver Eventos',
+		'cta_label' => 'Sobre o IIBPR',
+		'cta_url'   => '/sobre',
+		'sec_label' => 'Ver Programação',
 		'sec_url'   => '/eventos',
 	),
 );
@@ -99,71 +99,57 @@ $autoplay = absint( iibpr_get( 'iibpr_hero_autoplay', 6000 ) );
 		<!-- Track -->
 		<div class="carousel-track" style="width: <?php echo $total * 100; ?>%;">
 			<?php foreach ( $slides as $idx => $slide ) : ?>
-			<div class="carousel-slide" style="flex-basis: <?php echo 100 / $total; ?>%; width: <?php echo 100 / $total; ?>%;">
-				<div class="relative min-h-screen bg-[#6CB350] overflow-hidden flex items-center">
+			<div class="carousel-slide" data-slide="<?php echo $idx + 1; ?>" style="flex-basis: <?php echo 100 / $total; ?>%; width: <?php echo 100 / $total; ?>%;">
+				<div class="relative min-h-screen overflow-hidden flex items-center">
 
-					<!-- Texture overlay (22% opacity) -->
-					<div class="absolute inset-0 bg-[url('<?php echo esc_url( $img . 'textura-fundo.jpg' ); ?>')] bg-cover bg-center opacity-[0.22] pointer-events-none z-0"></div>
+					<!-- Full-bleed background image -->
+					<img src="<?php echo esc_url( $slide['image'] ); ?>" alt="" class="absolute inset-0 w-full h-full object-cover" aria-hidden="true">
 
-					<!-- 2-col layout: text left + photo right (lg+) -->
-					<div class="relative z-10 w-full grid lg:grid-cols-2 gap-0 min-h-screen items-center">
+					<!-- Gradient overlay: charcoal → dark green -->
+					<div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(64,72,86,0.75) 0%, rgba(58,90,42,0.65) 100%);"></div>
 
-						<!-- LEFT: Conteúdo -->
-						<div class="flex flex-col justify-center px-8 md:px-16 py-24 pt-[140px]">
-							<?php if ( $slide['tagline'] ) : ?>
-							<div class="inline-block bg-white/20 backdrop-blur-sm px-5 py-1.5 rounded-full text-sm font-medium mb-6 tracking-wide w-fit">
-								<span class="text-white"><?php echo esc_html( $slide['tagline'] ); ?></span>
-							</div>
+					<!-- Content -->
+					<div class="relative z-10 w-full px-6 md:px-16 lg:px-24 py-24 pt-[140px] max-w-4xl">
+
+						<?php if ( $slide['tagline'] ) : ?>
+						<div class="inline-block bg-white/20 backdrop-blur-sm px-5 py-1.5 rounded-full text-sm font-medium mb-6 tracking-wide">
+							<span class="text-white hero-slide-tagline"><?php echo esc_html( $slide['tagline'] ); ?></span>
+						</div>
+						<?php endif; ?>
+
+						<h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-5 text-white font-serif hero-slide-title">
+							<?php echo wp_kses_post( $slide['title'] ); ?>
+						</h2>
+
+						<?php if ( $slide['subtitle'] ) : ?>
+						<p class="text-xl md:text-2xl text-white/90 mb-4 max-w-2xl hero-slide-subtitle">
+							<?php echo wp_kses_post( $slide['subtitle'] ); ?>
+						</p>
+						<?php endif; ?>
+
+						<?php if ( $slide['desc'] ) : ?>
+						<p class="text-base md:text-lg text-white/75 mb-8 max-w-2xl hero-slide-desc">
+							<?php echo wp_kses_post( $slide['desc'] ); ?>
+						</p>
+						<?php endif; ?>
+
+						<?php if ( $slide['cta_label'] || $slide['sec_label'] ) : ?>
+						<div class="flex flex-col sm:flex-row gap-4 <?php echo $slide['desc'] ? '' : 'mt-8'; ?>">
+							<?php if ( $slide['cta_label'] ) : ?>
+							<a href="<?php echo esc_url( $slide['cta_url'] ); ?>"
+							   class="hero-cta-primary bg-white text-iibpr-green px-8 py-4 rounded-full text-lg font-bold hover:bg-gray-100 shadow-2xl transition-all hover:-translate-y-1 text-center no-underline inline-block">
+								<?php echo esc_html( $slide['cta_label'] ); ?>
+							</a>
 							<?php endif; ?>
-
-							<h2 class="text-4xl md:text-6xl font-extrabold leading-tight mb-5 text-white font-serif">
-								<?php echo wp_kses_post( $slide['title'] ); ?>
-							</h2>
-
-							<?php if ( $slide['subtitle'] ) : ?>
-							<p class="text-xl md:text-2xl text-white/90 mb-4">
-								<?php echo wp_kses_post( $slide['subtitle'] ); ?>
-							</p>
-							<?php endif; ?>
-
-							<?php if ( $slide['desc'] ) : ?>
-							<p class="text-base md:text-lg text-white/75 mb-8">
-								<?php echo wp_kses_post( $slide['desc'] ); ?>
-							</p>
-							<?php endif; ?>
-
-							<?php if ( $slide['cta_label'] || $slide['sec_label'] ) : ?>
-							<div class="flex flex-col sm:flex-row gap-4 <?php echo $slide['desc'] ? '' : 'mt-8'; ?>">
-								<?php if ( $slide['cta_label'] ) : ?>
-								<a href="<?php echo esc_url( $slide['cta_url'] ); ?>"
-								   class="bg-white text-[#6CB350] px-8 py-4 rounded-full text-lg font-bold hover:bg-gray-100 shadow-2xl transition-all hover:-translate-y-1 text-center no-underline inline-block">
-									<?php echo esc_html( $slide['cta_label'] ); ?>
-								</a>
-								<?php endif; ?>
-								<?php if ( $slide['sec_label'] ) : ?>
-								<a href="<?php echo esc_url( $slide['sec_url'] ); ?>"
-								   class="border-2 border-white/70 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/10 transition-all text-center no-underline inline-block">
-									<?php echo esc_html( $slide['sec_label'] ); ?>
-								</a>
-								<?php endif; ?>
-							</div>
+							<?php if ( $slide['sec_label'] ) : ?>
+							<a href="<?php echo esc_url( $slide['sec_url'] ); ?>"
+							   class="hero-cta-secondary border-2 border-white/70 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/10 transition-all text-center no-underline inline-block">
+								<?php echo esc_html( $slide['sec_label'] ); ?>
+							</a>
 							<?php endif; ?>
 						</div>
+						<?php endif; ?>
 
-						<!-- RIGHT: Foto frame (hidden abaixo de lg) -->
-						<div class="hidden lg:flex items-center justify-center px-8 py-16">
-							<div class="relative w-[560px] h-[700px] rounded-xl overflow-hidden shadow-2xl">
-								<img src="<?php echo esc_url( $slide['image'] ); ?>" class="w-full h-full object-cover" alt="Slide">
-								<!-- Gradient overlay horizontal: direita → #6CB350 -->
-								<div class="absolute inset-0 bg-gradient-to-r from-transparent via-[#6CB350]/30 to-[#6CB350]/80 pointer-events-none"></div>
-							</div>
-						</div>
-
-					</div>
-
-					<!-- Mobile: foto como bg fullscreen (abaixo de lg) -->
-					<div class="lg:hidden absolute inset-0 z-[-1]">
-						<img src="<?php echo esc_url( $slide['image'] ); ?>" class="w-full h-full object-cover opacity-30" alt="Slide">
 					</div>
 
 				</div>

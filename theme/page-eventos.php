@@ -44,23 +44,23 @@ $hero_bg = iibpr_get( 'iibpr_eventos_hero_bg' );
 <main id="main" class="site-main">
 
 	<!-- Hero -->
-	<section class="py-20 px-4 md:px-8 text-white text-center -mt-[72px] pt-[92px] relative overflow-hidden"
-	         style="background-image: linear-gradient(135deg, rgba(64,72,86,0.88) 0%, rgba(58,90,42,0.82) 100%), url('<?php echo $hero_bg ? esc_url( $hero_bg ) : esc_url( $img . 'mauro-palestra2.png' ); ?>'); background-size: cover; background-position: center;">
+	<section id="eventos-hero" class="py-20 px-4 md:px-8 text-white text-center -mt-[72px] pt-[92px] relative overflow-hidden"
+	         style="background-image: linear-gradient(135deg, rgba(64,72,86,0.88) 0%, rgba(58,90,42,0.82) 100%), url('<?php echo $hero_bg ? esc_url( $hero_bg ) : esc_url( $img . 'acao-grupo-5.jpg' ); ?>'); background-size: cover; background-position: center;">
 		<div class="max-w-4xl mx-auto relative z-10">
-			<h1 class="text-4xl md:text-5xl font-extrabold mb-4"><?php echo esc_html( iibpr_get( 'iibpr_eventos_hero_title', 'Eventos' ) ); ?></h1>
-			<p class="text-xl opacity-90"><?php echo esc_html( iibpr_get( 'iibpr_eventos_hero_subtitle', 'Fique por dentro das novidades — venha fazer parte de experiências únicas.' ) ); ?></p>
+			<h1 class="text-4xl md:text-5xl font-extrabold mb-4 page-hero-title"><?php echo esc_html( iibpr_get( 'iibpr_eventos_hero_title', 'Eventos' ) ); ?></h1>
+			<p class="text-xl opacity-90 page-hero-subtitle"><?php echo esc_html( iibpr_get( 'iibpr_eventos_hero_subtitle', 'Fique por dentro das novidades — venha fazer parte de experiências únicas.' ) ); ?></p>
 		</div>
 	</section>
 
 	<!-- Featured Event Card -->
 	<?php if ( iibpr_get( 'iibpr_eventos_feat_show', '1' ) ) : ?>
-	<section class="py-16 px-4 md:px-8 bg-white">
+	<section id="eventos-feat" class="py-16 px-4 md:px-8 bg-white">
 		<div class="max-w-4xl mx-auto">
 			<div class="bg-green-50 rounded-2xl overflow-hidden border border-green-200">
 				<div class="h-2 bg-gradient-to-r from-green-600 to-green-400"></div>
 				<div class="p-8 md:p-12">
 					<span class="inline-block bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full mb-4"><?php echo esc_html( iibpr_get( 'iibpr_eventos_feat_badge', 'Evento Destaque' ) ); ?></span>
-					<h2 class="text-3xl font-extrabold text-gray-900 mb-4"><?php echo esc_html( iibpr_get( 'iibpr_eventos_feat_title', '' ) ); ?></h2>
+					<h2 class="text-3xl font-extrabold text-gray-900 mb-4 feat-title"><?php echo esc_html( iibpr_get( 'iibpr_eventos_feat_title', '' ) ); ?></h2>
 					<div class="flex flex-wrap gap-4 mb-6 text-sm">
 						<?php $feat_date = iibpr_get( 'iibpr_eventos_feat_date' ); if ( $feat_date ) : ?>
 						<span class="flex items-center gap-1 text-green-600 font-medium">
@@ -108,11 +108,11 @@ $hero_bg = iibpr_get( 'iibpr_eventos_hero_bg' );
 	<?php endif; ?>
 
 	<!-- Upcoming Events -->
-	<section class="py-20 px-4 md:px-8 bg-gray-50">
+	<section id="eventos-upcoming" class="py-20 px-4 md:px-8 bg-gray-50">
 		<div class="max-w-4xl mx-auto">
 			<div class="text-center mb-14">
-				<p class="section-label"><?php echo esc_html( iibpr_get( 'iibpr_eventos_upcoming_label', 'Agenda' ) ); ?></p>
-				<h2 class="text-3xl font-extrabold text-gray-900 mt-2"><?php echo esc_html( iibpr_get( 'iibpr_eventos_upcoming_title', 'Próximos Eventos' ) ); ?></h2>
+				<p class="section-label section-label-text"><?php echo esc_html( iibpr_get( 'iibpr_eventos_upcoming_label', 'Agenda' ) ); ?></p>
+				<h2 class="text-3xl font-extrabold text-gray-900 mt-2 section-heading"><?php echo esc_html( iibpr_get( 'iibpr_eventos_upcoming_title', 'Próximos Eventos' ) ); ?></h2>
 			</div>
 
 			<?php if ( $upcoming->have_posts() ) : ?>
@@ -147,11 +147,11 @@ $hero_bg = iibpr_get( 'iibpr_eventos_hero_bg' );
 	</section>
 
 	<!-- Past Events -->
-	<section class="py-20 px-4 md:px-8 bg-white">
+	<section id="eventos-past" class="py-20 px-4 md:px-8 bg-white">
 		<div class="max-w-4xl mx-auto">
 			<div class="text-center mb-14">
-				<p class="section-label"><?php echo esc_html( iibpr_get( 'iibpr_eventos_past_label', 'Histórico' ) ); ?></p>
-				<h2 class="text-3xl font-extrabold text-gray-900 mt-2"><?php echo esc_html( iibpr_get( 'iibpr_eventos_past_title', 'Eventos Realizados' ) ); ?></h2>
+				<p class="section-label section-label-text"><?php echo esc_html( iibpr_get( 'iibpr_eventos_past_label', 'Histórico' ) ); ?></p>
+				<h2 class="text-3xl font-extrabold text-gray-900 mt-2 section-heading"><?php echo esc_html( iibpr_get( 'iibpr_eventos_past_title', 'Eventos Realizados' ) ); ?></h2>
 			</div>
 
 			<?php if ( $past->have_posts() ) : ?>

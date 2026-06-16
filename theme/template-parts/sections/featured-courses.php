@@ -81,7 +81,7 @@ $course_images = array(
 				$course_img = $image ? $image : ( isset( $course_images[ $i ] ) ? $course_images[ $i ] : '' );
 			?>
 			<article class="course-card h-full flex flex-col fade-up fade-up-delay-<?php echo $i; ?>">
-				<div class="course-card-media h-52 overflow-hidden">
+				<div class="course-card-media aspect-[3/2] overflow-hidden">
 					<?php if ( $course_img ) : ?>
 					<img src="<?php echo esc_url( $course_img ); ?>" alt="<?php echo esc_attr( $title ); ?>"
 					     class="course-card-image transition-transform duration-300" loading="lazy">

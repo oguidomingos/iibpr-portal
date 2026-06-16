@@ -18,49 +18,19 @@ $area_name     = ( $areas && ! is_wp_error( $areas ) ) ? $areas[0]->name : '';
          data-level="<?php echo esc_attr( $level_name ); ?>"
          data-area="<?php echo esc_attr( $area_name ); ?>">
 
-	<!-- Photo zone -->
-	<div class="relative h-48 overflow-hidden flex-shrink-0 course-card-media">
-
-		<?php if ( has_post_thumbnail() ) : ?>
-		<!-- Real thumbnail -->
-		<?php the_post_thumbnail( 'medium_large', array( 'class' => 'course-card-image', 'loading' => 'lazy' ) ); ?>
-		<?php else : ?>
-		<!-- Fallback: branded course cover template -->
+	<!-- Branded cover (uniform 3:2 across all cards) -->
+	<div class="relative aspect-[3/2] overflow-hidden flex-shrink-0 course-card-media iibpr-cover-fill">
 		<?php
 		get_template_part(
 			'template-parts/course-cover',
 			null,
 			array(
-				'title'  => get_the_title(),
-				'level'  => $level_name,
-				'type'   => $modality_name,
+				'title' => get_the_title(),
+				'level' => $level_name,
+				'type'  => $modality_name,
 			)
 		);
 		?>
-		<?php endif; ?>
-
-		<!-- Gradient overlay (minimal — thumbnails already have brand overlays) -->
-		<div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to bottom, transparent 70%, rgba(0,0,0,0.3));"></div>
-
-		<!-- Logo pill top-left (over photo) -->
-		<div class="absolute top-3 left-3 bg-white/95 px-3 py-1.5 rounded-full text-xs font-bold text-iibpr-green backdrop-blur-sm shadow-sm">
-			IIBPR
-		</div>
-
-		<!-- Level badge top-right -->
-		<?php if ( $level_name ) : ?>
-		<div class="absolute top-3 right-3 bg-iibpr-light px-3 py-1.5 rounded-full text-xs font-bold text-white">
-			<?php echo esc_html( $level_name ); ?>
-		</div>
-		<?php endif; ?>
-
-		<!-- Hours bottom-right (over gradient) -->
-		<?php if ( $hours ) : ?>
-		<div class="absolute bottom-3 right-3 text-white text-sm font-bold opacity-90">
-			<?php echo esc_html( $hours ); ?>
-		</div>
-		<?php endif; ?>
-
 	</div>
 
 	<!-- Content section -->
@@ -78,9 +48,9 @@ $area_name     = ( $areas && ! is_wp_error( $areas ) ) ? $areas[0]->name : '';
 		<p class="text-gray-500 text-sm leading-relaxed flex-1 line-clamp-3"><?php echo esc_html( get_the_excerpt() ); ?></p>
 		<?php endif; ?>
 
-		<!-- Area tag (small, gray) -->
-		<?php if ( $area_name ) : ?>
-		<p class="text-xs text-gray-400 mt-2"><?php echo esc_html( $area_name ); ?></p>
+		<!-- Area + carga horária (small, gray) -->
+		<?php if ( $area_name || $hours ) : ?>
+		<p class="text-xs text-gray-400 mt-2"><?php echo esc_html( trim( $area_name . ( ( $area_name && $hours ) ? ' • ' : '' ) . $hours ) ); ?></p>
 		<?php endif; ?>
 
 		<!-- CTA bar: price + button -->

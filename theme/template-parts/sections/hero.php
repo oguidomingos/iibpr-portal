@@ -97,23 +97,23 @@ $autoplay = absint( iibpr_get( 'iibpr_hero_autoplay', 6000 ) );
 ?>
 
 <style>
-	.iibpr-hero-slide{min-height:clamp(440px,54vh,620px);}
+	.iibpr-hero-slide{min-height:clamp(420px,50vh,560px);}
 	.iibpr-hero-bg{position:absolute;inset:0;z-index:0;background:linear-gradient(120deg,#374050 0%,#3f5a35 55%,#5A9A42 100%);}
 	.iibpr-hero-tex{position:absolute;inset:0;z-index:1;mix-blend-mode:soft-light;opacity:.13;background-repeat:repeat;background-size:300px auto;}
-	.iibpr-hero-wave{position:absolute;z-index:2;left:-60px;right:-60px;bottom:70px;height:120px;opacity:.34;background-repeat:no-repeat;background-position:center;background-size:contain;pointer-events:none;}
+	.iibpr-hero-wave{position:absolute;z-index:2;left:-60px;right:-60px;bottom:54px;height:104px;opacity:.32;background-repeat:no-repeat;background-position:center;background-size:contain;pointer-events:none;}
 	/* centered container with side margins */
 	.iibpr-hero-inner{position:relative;z-index:4;width:100%;max-width:1180px;margin:0 auto;padding:0 40px;
-		display:flex;align-items:center;min-height:clamp(440px,54vh,620px);}
-	.iibpr-hero-cut{position:absolute;z-index:3;right:0;bottom:0;height:96%;width:auto;max-width:42%;
+		display:flex;align-items:center;min-height:clamp(420px,50vh,560px);}
+	.iibpr-hero-cut{position:absolute;z-index:3;right:0;bottom:0;height:88%;width:auto;max-width:34%;
 		object-fit:contain;object-position:bottom;filter:drop-shadow(-22px 18px 40px rgba(0,0,0,.4));}
-	.iibpr-hero-textcol{padding:96px 0 56px;}
-	.iibpr-hero-content{max-width:600px;}
+	.iibpr-hero-textcol{padding:80px 0 48px;}
+	.iibpr-hero-content{max-width:560px;}
 	@media (max-width:1023px){
 		.iibpr-hero-inner{padding:0 24px;}
-		.iibpr-hero-cut{opacity:.22;max-width:64%;right:-4%;}
+		.iibpr-hero-cut{opacity:.20;max-width:58%;right:-4%;}
 		.iibpr-hero-content{max-width:100%;}
-		.iibpr-hero-textcol{padding:104px 0 48px;}
-		.iibpr-hero-wave{bottom:40px;height:90px;}
+		.iibpr-hero-textcol{padding:96px 0 44px;}
+		.iibpr-hero-wave{bottom:34px;height:82px;}
 	}
 </style>
 
@@ -152,18 +152,18 @@ $autoplay = absint( iibpr_get( 'iibpr_hero_autoplay', 6000 ) );
 						</div>
 						<?php endif; ?>
 
-						<h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-5 text-white font-serif hero-slide-title">
+						<h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-4 text-white font-serif hero-slide-title">
 							<?php echo wp_kses_post( $slide['title'] ); ?>
 						</h2>
 
 						<?php if ( $slide['subtitle'] ) : ?>
-						<p class="text-xl md:text-2xl text-white/90 mb-4 max-w-2xl hero-slide-subtitle">
+						<p class="text-lg md:text-xl text-white/90 mb-4 max-w-xl hero-slide-subtitle">
 							<?php echo wp_kses_post( $slide['subtitle'] ); ?>
 						</p>
 						<?php endif; ?>
 
 						<?php if ( $slide['desc'] ) : ?>
-						<p class="text-base md:text-lg text-white/75 mb-8 max-w-2xl hero-slide-desc">
+						<p class="text-sm md:text-base text-white/75 mb-7 max-w-xl hero-slide-desc">
 							<?php echo wp_kses_post( $slide['desc'] ); ?>
 						</p>
 						<?php endif; ?>
@@ -172,13 +172,13 @@ $autoplay = absint( iibpr_get( 'iibpr_hero_autoplay', 6000 ) );
 						<div class="flex flex-col sm:flex-row gap-4 <?php echo $slide['desc'] ? '' : 'mt-8'; ?>">
 							<?php if ( $slide['cta_label'] ) : ?>
 							<a href="<?php echo esc_url( $slide['cta_url'] ); ?>"
-							   class="hero-cta-primary bg-white text-iibpr-green px-8 py-4 rounded-full text-lg font-bold hover:bg-gray-100 shadow-2xl transition-all hover:-translate-y-1 text-center no-underline inline-block">
+							   class="hero-cta-primary bg-white text-iibpr-green px-7 py-3 rounded-full text-base font-bold hover:bg-gray-100 shadow-2xl transition-all hover:-translate-y-1 text-center no-underline inline-block">
 								<?php echo esc_html( $slide['cta_label'] ); ?>
 							</a>
 							<?php endif; ?>
 							<?php if ( $slide['sec_label'] ) : ?>
 							<a href="<?php echo esc_url( $slide['sec_url'] ); ?>"
-							   class="hero-cta-secondary border-2 border-white/70 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/10 transition-all text-center no-underline inline-block">
+							   class="hero-cta-secondary border-2 border-white/70 text-white px-7 py-3 rounded-full text-base font-semibold hover:bg-white/10 transition-all text-center no-underline inline-block">
 								<?php echo esc_html( $slide['sec_label'] ); ?>
 							</a>
 							<?php endif; ?>

@@ -24,6 +24,7 @@ $args = wp_parse_args( $args, array(
 	'type'   => '',
 	'photo'  => '',
 	'kicker' => '',
+	'aspect' => '',  // '' = 3:2 card; 'hero' = wide short band
 ) );
 
 $title  = (string) $args['title'];
@@ -31,6 +32,7 @@ $level  = (string) $args['level'];
 $type   = (string) $args['type'];
 $photo  = (string) $args['photo'];
 $kicker = (string) $args['kicker'];
+$aspect = (string) $args['aspect'];
 
 if ( ! $title ) {
 	return;
@@ -46,10 +48,14 @@ if ( ! $iibpr_cover_css_done ) :
 	$iibpr_cover_css_done = true;
 	?>
 	<style id="iibpr-cover-styles">
-		.iibpr-cover{position:relative;width:100%;height:100%;min-height:400px;aspect-ratio:3/2;
+		.iibpr-cover{position:relative;width:100%;height:100%;min-height:0;aspect-ratio:3/2;
 			overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
 			color:#fff;isolation:isolate;border-radius:inherit;
 			font-family:"Inter",ui-sans-serif,system-ui,sans-serif;}
+		/* when inside a sized media box, fill it (parent controls the 3:2) */
+		.iibpr-cover-fill .iibpr-cover{height:100%;aspect-ratio:auto;}
+		/* hero band: wide and short (single course/event page) */
+		.iibpr-cover--hero{aspect-ratio:auto;height:auto;min-height:clamp(300px,38vh,420px);}
 		/* base: diagonal organic gradient charcoal -> greens */
 		.iibpr-cover__bg{position:absolute;inset:0;z-index:0;
 			background:linear-gradient(135deg,#404856 0%,#3f5a35 42%,#5A9A42 74%,#6CB350 100%);}
@@ -94,7 +100,7 @@ if ( ! $iibpr_cover_css_done ) :
 endif;
 ?>
 
-<div class="iibpr-cover" role="img" aria-label="<?php echo esc_attr( $title ); ?>">
+<div class="iibpr-cover<?php echo 'hero' === $aspect ? ' iibpr-cover--hero' : ''; ?>" role="img" aria-label="<?php echo esc_attr( $title ); ?>">
 
 	<?php if ( $photo ) : ?>
 		<div class="iibpr-cover__photo" style="background-image:url('<?php echo esc_url( $photo ); ?>');"></div>

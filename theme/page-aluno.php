@@ -8,10 +8,12 @@ get_header(); ?>
 <main id="main" class="site-main">
 
 	<!-- Hero -->
-	<section id="aluno-hero" class="bg-primary-gradient py-16 px-4 md:px-8 text-white text-center -mt-[72px] pt-[92px]">
-		<div class="max-w-4xl mx-auto">
-			<h1 class="text-3xl md:text-4xl font-extrabold mb-2 page-hero-title"><?php echo esc_html( iibpr_get( 'iibpr_aluno_hero_title', 'Área do Aluno' ) ); ?></h1>
-			<p class="text-lg opacity-90 page-hero-subtitle"><?php echo esc_html( iibpr_get( 'iibpr_aluno_hero_subtitle', 'Acesse seus cursos e materiais.' ) ); ?></p>
+	<?php $aluno_bg = iibpr_get( 'iibpr_aluno_hero_bg' ); ?>
+	<section id="aluno-hero" class="py-20 px-4 md:px-8 text-white text-center -mt-[72px] pt-[92px] relative overflow-hidden"
+	         style="background-image: linear-gradient(135deg, rgba(64,72,86,0.88) 0%, rgba(58,90,42,0.82) 100%), url('<?php echo $aluno_bg ? esc_url( $aluno_bg ) : esc_url( get_template_directory_uri() . '/images/acao-grupo-2.jpg' ); ?>'); background-size: cover; background-position: center;">
+		<div class="max-w-4xl mx-auto relative z-10">
+			<h1 class="text-4xl md:text-5xl font-extrabold mb-4 page-hero-title"><?php echo esc_html( iibpr_get( 'iibpr_aluno_hero_title', 'Área do Aluno' ) ); ?></h1>
+			<p class="text-xl opacity-90 page-hero-subtitle"><?php echo esc_html( iibpr_get( 'iibpr_aluno_hero_subtitle', 'Acesse seus cursos e materiais.' ) ); ?></p>
 		</div>
 	</section>
 

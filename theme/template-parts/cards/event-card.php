@@ -19,32 +19,18 @@ if ( $date_start ) {
 ?>
 <article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 h-full flex flex-col">
 
-	<!-- Photo zone -->
-	<div class="relative h-44 overflow-hidden flex-shrink-0">
-		<?php if ( has_post_thumbnail() ) : ?>
-		<?php the_post_thumbnail( 'medium_large', array( 'class' => 'w-full h-full object-cover', 'loading' => 'lazy' ) ); ?>
-		<?php else : ?>
-		<div class="w-full h-full bg-gradient-to-br from-iibpr-green to-iibpr-green-dark flex items-center justify-center">
-			<svg class="w-12 h-12 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-		</div>
-		<?php endif; ?>
-
-		<!-- Gradient overlay (minimal — thumbnails already have brand overlays) -->
-		<div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to bottom, transparent 70%, rgba(0,0,0,0.3));"></div>
-
-		<!-- Type badge top-left -->
-		<?php if ( $event_type ) : ?>
-		<div class="absolute top-3 left-3 bg-white/95 px-3 py-1.5 rounded-full text-xs font-bold text-iibpr-green backdrop-blur-sm shadow-sm">
-			<?php echo esc_html( $event_type ); ?>
-		</div>
-		<?php endif; ?>
-
-		<!-- Date badge bottom-left -->
-		<?php if ( $date_display ) : ?>
-		<div class="absolute bottom-3 left-3 text-white text-sm font-semibold drop-shadow-md">
-			<?php echo esc_html( $date_display ); ?>
-		</div>
-		<?php endif; ?>
+	<!-- Branded cover (uniform 3:2 across all cards) -->
+	<div class="relative aspect-[3/2] overflow-hidden flex-shrink-0 iibpr-cover-fill">
+		<?php
+		get_template_part(
+			'template-parts/course-cover',
+			null,
+			array(
+				'title' => get_the_title(),
+				'type'  => $event_type,
+			)
+		);
+		?>
 	</div>
 
 	<!-- Content section -->
@@ -55,6 +41,13 @@ if ( $date_start ) {
 				<?php the_title(); ?>
 			</a>
 		</h3>
+
+		<?php if ( $date_display ) : ?>
+		<p class="text-sm font-semibold text-iibpr-green mb-2 flex items-center gap-1">
+			<svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+			<?php echo esc_html( $date_display ); ?>
+		</p>
+		<?php endif; ?>
 
 		<?php if ( $location ) : ?>
 		<p class="text-sm text-gray-500 mb-2 flex items-center gap-1">

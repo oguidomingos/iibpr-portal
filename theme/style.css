@@ -3773,3 +3773,36 @@ html {
     }
   }
 }
+
+/* ============================================================
+   Finalização IIBPR — paginação + marca nos heros de página
+   ============================================================ */
+
+/* Paginação (the_posts_pagination) */
+.pagination .nav-links,
+nav.pagination .nav-links { display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin-top:40px; }
+.page-numbers {
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:44px; height:44px; padding:0 14px; border-radius:999px;
+  background:#fff; border:1px solid #e3e7e0; color:#404856;
+  font-weight:700; font-size:15px; line-height:1; text-decoration:none;
+  transition:all .2s ease; box-shadow:0 1px 3px rgba(64,72,86,.06);
+}
+.page-numbers:hover { border-color:#6CB350; color:#5A9A42; transform:translateY(-1px); box-shadow:0 4px 12px rgba(108,179,80,.18); }
+.page-numbers.current { background:#6CB350; border-color:#6CB350; color:#fff; box-shadow:0 6px 16px rgba(108,179,80,.35); }
+.page-numbers.dots { background:transparent; border-color:transparent; box-shadow:none; }
+.page-numbers.prev, .page-numbers.next { font-size:18px; }
+.screen-reader-text { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
+
+/* Marca (textura monograma + onda) nos heros de todas as páginas internas */
+section[id$="-hero"] { position:relative; }
+section[id$="-hero"] > * { position:relative; z-index:2; }
+section[id$="-hero"]::after {
+  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:url(images/brand/texture-1.png) repeat; background-size:300px auto;
+  opacity:.10; mix-blend-mode:soft-light;
+}
+section[id$="-hero"]::before {
+  content:""; position:absolute; left:-40px; right:-40px; bottom:0; height:90px; z-index:1; pointer-events:none;
+  background:url(images/brand/line-white.png) no-repeat center bottom; background-size:contain; opacity:.22;
+}

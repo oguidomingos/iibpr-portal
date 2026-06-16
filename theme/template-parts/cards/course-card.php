@@ -25,9 +25,10 @@ $area_name     = ( $areas && ! is_wp_error( $areas ) ) ? $areas[0]->name : '';
 			'template-parts/course-cover',
 			null,
 			array(
-				'title' => get_the_title(),
-				'level' => $level_name,
-				'type'  => $modality_name,
+				'title'      => get_the_title(),
+				'level'      => $level_name,
+				'type'       => $modality_name,
+				'show_title' => false,
 			)
 		);
 		?>
@@ -37,7 +38,7 @@ $area_name     = ( $areas && ! is_wp_error( $areas ) ) ? $areas[0]->name : '';
 	<div class="p-5 flex flex-col flex-1">
 
 		<!-- Title -->
-		<h3 class="text-lg font-bold text-iibpr-charcoal mb-2 font-serif line-clamp-2">
+		<h3 class="text-lg font-bold text-iibpr-charcoal mb-2 font-serif">
 			<a href="<?php the_permalink(); ?>" class="no-underline text-iibpr-charcoal hover:text-iibpr-green transition-colors">
 				<?php the_title(); ?>
 			</a>
@@ -45,7 +46,7 @@ $area_name     = ( $areas && ! is_wp_error( $areas ) ) ? $areas[0]->name : '';
 
 		<!-- Excerpt -->
 		<?php if ( has_excerpt() ) : ?>
-		<p class="text-gray-500 text-sm leading-relaxed flex-1 line-clamp-3"><?php echo esc_html( get_the_excerpt() ); ?></p>
+		<p class="text-gray-500 text-sm leading-relaxed flex-1"><?php echo esc_html( get_the_excerpt() ); ?></p>
 		<?php endif; ?>
 
 		<!-- Area + carga horária (small, gray) -->

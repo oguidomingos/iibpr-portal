@@ -25,6 +25,7 @@ $args = wp_parse_args( $args, array(
 	'photo'  => '',
 	'kicker' => '',
 	'aspect' => '',  // '' = 3:2 card; 'hero' = wide short band
+	'show_title' => true, // false = banner mode (centered logo, no title) for cards
 ) );
 
 $title  = (string) $args['title'];
@@ -33,6 +34,7 @@ $type   = (string) $args['type'];
 $photo  = (string) $args['photo'];
 $kicker = (string) $args['kicker'];
 $aspect = (string) $args['aspect'];
+$show_title = (bool) $args['show_title'];
 
 if ( ! $title ) {
 	return;
@@ -41,6 +43,7 @@ if ( ! $title ) {
 $img_base = get_template_directory_uri() . '/images/';
 $texture  = $img_base . 'brand/texture-1.png';   // IIBPR monogram pattern
 $wave     = $img_base . 'brand/line-white.png';  // brand movement wave
+$logo     = $img_base . 'iibpr-logo.svg';        // brand logo (rendered white via CSS)
 
 // Print the cover CSS only once per request.
 static $iibpr_cover_css_done = false;
@@ -81,6 +84,12 @@ if ( ! $iibpr_cover_css_done ) :
 			display:flex;align-items:center;justify-content:space-between;gap:10px;}
 		.iibpr-cover__brand{font-weight:800;letter-spacing:.3em;font-size:13px;color:rgba(255,255,255,.95);
 			flex:0 0 auto;}
+		/* brand logo (white) */
+		.iibpr-cover__logo{height:24px;width:auto;flex:0 0 auto;filter:brightness(0) invert(1);opacity:.95;}
+		/* banner mode: centered logo, no title */
+		.iibpr-cover__center{position:absolute;inset:0;z-index:4;display:flex;align-items:center;justify-content:center;padding:18px;}
+		.iibpr-cover__center img{height:clamp(40px,9vw,64px);width:auto;max-width:62%;filter:brightness(0) invert(1);opacity:.95;
+			filter:brightness(0) invert(1) drop-shadow(0 2px 10px rgba(0,0,0,.35));}
 		.iibpr-cover__badge{background:#A6D16C;color:#2b3320;font-weight:700;font-size:11px;
 			letter-spacing:.02em;padding:5px 12px;border-radius:999px;white-space:nowrap;flex:0 1 auto;
 			max-width:64%;overflow:hidden;text-overflow:ellipsis;box-shadow:0 2px 10px rgba(0,0,0,.18);}
@@ -115,12 +124,17 @@ endif;
 	<div class="iibpr-cover__scrim"></div>
 
 	<div class="iibpr-cover__top">
-		<span class="iibpr-cover__brand">IIBPR</span>
+		<?php if ( $show_title ) : ?>
+			<img class="iibpr-cover__logo" src="<?php echo esc_url( $logo ); ?>" alt="IIBPR">
+		<?php else : ?>
+			<span></span>
+		<?php endif; ?>
 		<?php if ( $level || $type ) : ?>
 			<span class="iibpr-cover__badge"><?php echo esc_html( trim( $level . ( ( $level && $type ) ? ' • ' : '' ) . $type ) ); ?></span>
 		<?php endif; ?>
 	</div>
 
+	<?php if ( $show_title ) : ?>
 	<div class="iibpr-cover__content">
 		<div class="iibpr-cover__rule"></div>
 		<?php if ( $kicker ) : ?>
@@ -128,6 +142,9 @@ endif;
 		<?php endif; ?>
 		<h3 class="iibpr-cover__title"><?php echo esc_html( $title ); ?></h3>
 	</div>
+	<?php else : ?>
+	<div class="iibpr-cover__center"><img src="<?php echo esc_url( $logo ); ?>" alt="IIBPR"></div>
+	<?php endif; ?>
 
 	<div class="iibpr-cover__barline" aria-hidden="true"></div>
 </div>

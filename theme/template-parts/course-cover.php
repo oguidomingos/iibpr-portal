@@ -37,7 +37,8 @@ if ( ! $title ) {
 }
 
 $img_base = get_template_directory_uri() . '/images/';
-$texture  = $img_base . 'textura-fundo.jpg';
+$texture  = $img_base . 'brand/texture-1.png';   // IIBPR monogram pattern
+$wave     = $img_base . 'brand/line-white.png';  // brand movement wave
 
 // Print the cover CSS only once per request.
 static $iibpr_cover_css_done = false;
@@ -57,15 +58,11 @@ if ( ! $iibpr_cover_css_done ) :
 			background:radial-gradient(120% 90% at 12% 8%,rgba(166,209,108,.38),transparent 55%);}
 		/* paper/organic texture */
 		.iibpr-cover__texture{position:absolute;inset:0;z-index:2;mix-blend-mode:soft-light;
-			opacity:.20;background-size:cover;background-position:center;}
-		/* concentric ring motif — movement in relation */
-		.iibpr-cover__rings{position:absolute;z-index:2;right:-90px;bottom:-110px;width:360px;height:360px;
-			opacity:.5;pointer-events:none;}
-		.iibpr-cover__rings span{position:absolute;border-radius:50%;border:1.5px solid rgba(255,255,255,.55);
-			inset:0;}
-		.iibpr-cover__rings span:nth-child(2){inset:34px;border-color:rgba(255,255,255,.40);}
-		.iibpr-cover__rings span:nth-child(3){inset:72px;border-color:rgba(255,255,255,.28);}
-		.iibpr-cover__rings span:nth-child(4){inset:116px;border-color:rgba(166,209,108,.55);}
+			opacity:.14;background-size:380px auto;background-position:center;background-repeat:repeat;}
+		/* brand wave — "movimento em relação" */
+		.iibpr-cover__wave{position:absolute;z-index:2;left:-30px;right:-30px;bottom:74px;height:96px;
+			opacity:.5;background-repeat:no-repeat;background-size:contain;background-position:center;
+			pointer-events:none;}
 		/* photo mode */
 		.iibpr-cover__photo{position:absolute;inset:0;z-index:1;background-size:cover;background-position:center;}
 		.iibpr-cover__photo-overlay{position:absolute;inset:0;z-index:2;
@@ -105,7 +102,7 @@ endif;
 		<div class="iibpr-cover__bg"></div>
 		<div class="iibpr-cover__glow"></div>
 		<div class="iibpr-cover__texture" style="background-image:url('<?php echo esc_url( $texture ); ?>');"></div>
-		<div class="iibpr-cover__rings" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+		<div class="iibpr-cover__wave" style="background-image:url('<?php echo esc_url( $wave ); ?>');" aria-hidden="true"></div>
 	<?php endif; ?>
 
 	<div class="iibpr-cover__scrim"></div>

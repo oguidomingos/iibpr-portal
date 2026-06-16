@@ -55,7 +55,8 @@ if ( ! $iibpr_cover_css_done ) :
 			overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
 			color:#fff;isolation:isolate;border-radius:inherit;
 			font-family:"Inter",ui-sans-serif,system-ui,sans-serif;}
-		/* when inside a sized media box, fill it (parent controls the 3:2) */
+		/* media box: guaranteed 3:2 (não depende da classe Tailwind aspect-[3/2]) */
+		.iibpr-cover-fill{aspect-ratio:3/2;width:100%;overflow:hidden;}
 		.iibpr-cover-fill .iibpr-cover{height:100%;aspect-ratio:auto;}
 		/* hero band: wide and short (single course/event page) */
 		.iibpr-cover--hero{aspect-ratio:auto;height:auto;min-height:clamp(300px,38vh,420px);}

@@ -93,7 +93,7 @@ $hero_bg = iibpr_get( 'iibpr_prp_hero_bg' );
 				<h2 class="text-3xl font-extrabold text-gray-900 mt-2 section-heading"><?php echo esc_html( iibpr_get( 'iibpr_prp_areas_title', 'Onde Atua a PRP' ) ); ?></h2>
 			</div>
 			<?php
-			$area_img_defaults = array( 1 => 'bg-criancas.jpg', 2 => 'criancas-brincando.jpg', 3 => 'content-03.jpg' );
+			$area_img_defaults = array( 1 => 'bg-criancas.jpg', 2 => 'criancas-brincando.jpg', 3 => 'acao-formacao-4.jpg' );
 			$area_alt_defaults = array( 1 => 'Educação', 2 => 'Prevenção', 3 => 'Clínica' );
 			$area_text_defaults = array(
 				1 => 'Ampliação do repertório psicomotor e do desenvolvimento integral em contextos escolares e de aprendizagem.',

@@ -2,36 +2,63 @@
 /**
  * Template Part: Events Section
  */
-$events = new WP_Query( array(
-    'post_type'      => 'iibpr_evento',
-    'posts_per_page' => 3,
-    'meta_key'       => '_iibpr_event_date_start',
-    'orderby'        => 'meta_value',
-    'order'          => 'ASC',
-    'meta_query'     => array(
-        'relation' => 'OR',
-        array(
-            'key'     => '_iibpr_event_date_start',
-            'value'   => date( 'Y-m-d' ),
-            'compare' => '>=',
-            'type'    => 'DATE',
-        ),
-        array(
-            'key'     => '_iibpr_event_date_start',
-            'compare' => 'NOT EXISTS',
-        ),
-    ),
-) );
+$selected_event_ids = array_values( array_filter( array_map(
+	'absint',
+	array(
+		iibpr_get( 'iibpr_home_featured_event_1', 0 ),
+		iibpr_get( 'iibpr_home_featured_event_2', 0 ),
+		iibpr_get( 'iibpr_home_featured_event_3', 0 ),
+	)
+) ) );
+
+$query_args = array(
+	'post_type'      => 'iibpr_evento',
+	'posts_per_page' => 3,
+);
+
+if ( ! empty( $selected_event_ids ) ) {
+	$query_args['post__in'] = $selected_event_ids;
+	$query_args['orderby']  = 'post__in';
+} else {
+	$query_args['meta_key']   = '_iibpr_event_date_start';
+	$query_args['orderby']    = 'meta_value';
+	$query_args['order']      = 'ASC';
+	$query_args['meta_query'] = array(
+		'relation' => 'OR',
+		array(
+			'key'     => '_iibpr_event_date_start',
+			'value'   => date( 'Y-m-d' ),
+			'compare' => '>=',
+			'type'    => 'DATE',
+		),
+		array(
+			'key'     => '_iibpr_event_date_start',
+			'compare' => 'NOT EXISTS',
+		),
+	);
+}
+
+$events = new WP_Query( $query_args );
+
+// Fallback: if no future events found, show the 3 most recent
+if ( ! $events->have_posts() ) {
+	$events = new WP_Query( array(
+		'post_type'      => 'iibpr_evento',
+		'posts_per_page' => 3,
+		'orderby'        => 'date',
+		'order'          => 'DESC',
+	) );
+}
 
 $has_cpt_events = $events->have_posts();
 ?>
-<section id="eventos" class="section-padding bg-gray-50">
+<section id="eventos-home" class="section-padding bg-gray-50">
 	<div class="container-narrow">
 
 		<div class="text-center mb-14 fade-up">
-			<p class="section-label">Agenda</p>
-			<h2 class="section-title">Próximos Eventos</h2>
-			<p class="section-subtitle">Seminários, workshops e formações presenciais e online.</p>
+			<p class="section-label home-events-label"><?php echo esc_html( iibpr_get( 'iibpr_home_events_label', 'Agenda' ) ); ?></p>
+			<h2 class="section-title home-events-title"><?php echo wp_kses_post( iibpr_get( 'iibpr_home_events_title', 'Próximos Eventos' ) ); ?></h2>
+			<p class="section-subtitle home-events-subtitle"><?php echo wp_kses_post( iibpr_get( 'iibpr_home_events_subtitle', 'Seminários, workshops e formações presenciais e online.' ) ); ?></p>
 		</div>
 
 		<?php if ( $has_cpt_events ) : ?>

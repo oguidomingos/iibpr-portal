@@ -5,10 +5,11 @@
 $img_base = get_template_directory_uri() . '/images/';
 $partners = array(
     array( 'name' => 'IIPR',  'desc' => 'Instituto Internacional de Psicomotricidade Relacional — Itália', 'logo' => $img_base . 'iipr.png' ),
-    array( 'name' => 'ABP',   'desc' => 'Associação Brasileira de Psicomotricidade', 'logo' => '' ),
+    array( 'name' => 'ABP',   'desc' => 'Associação Brasileira de Psicomotricidade', 'logo' => $img_base . 'abp-logo.jpg' ),
+    array( 'name' => 'IESB',  'desc' => 'Instituto de Educação Superior de Brasília', 'logo' => $img_base . 'iesb-logo.jpg' ),
 );
 ?>
-<section class="py-16 px-4 md:px-8 bg-white border-t border-gray-100">
+<section id="parceiros" class="py-16 px-4 md:px-8 bg-white border-t border-gray-100">
 	<div class="container-narrow">
 		<div class="text-center mb-10 fade-up">
 			<p class="section-label">Rede</p>

@@ -10,10 +10,10 @@ $img_base = get_template_directory_uri() . '/images/';
 	<div class="max-w-3xl mx-auto relative z-10">
 
 		<p class="section-label text-green-200 mb-4 fade-up">Inscrições Abertas</p>
-		<h2 class="text-3xl md:text-5xl font-extrabold mb-6 fade-up fade-up-delay-1">
+		<h2 class="text-3xl md:text-5xl font-extrabold mb-6 fade-up fade-up-delay-1 cta-title">
 			<?php echo wp_kses_post( iibpr_get( 'iibpr_cta_title', 'Eleve sua prática profissional' ) ); ?>
 		</h2>
-		<p class="text-xl opacity-90 mb-10 max-w-xl mx-auto fade-up fade-up-delay-2">
+		<p class="text-xl opacity-90 mb-10 max-w-xl mx-auto fade-up fade-up-delay-2 cta-subtitle">
 			<?php echo wp_kses_post( iibpr_get( 'iibpr_cta_subtitle', 'Faça parte de uma comunidade internacional de profissionais que transformam vidas através da psicomotricidade relacional.' ) ); ?>
 		</p>
 
@@ -23,7 +23,7 @@ $img_base = get_template_directory_uri() . '/images/';
 			$btn_url   = iibpr_get( 'iibpr_cta_btn_url', '#' );
 			?>
 			<a href="<?php echo esc_url( $btn_url ); ?>" target="_blank" rel="noopener"
-			   class="bg-white text-gray-900 px-10 py-4 rounded-full text-lg font-bold hover:bg-gray-100 shadow-2xl transition-all hover:-translate-y-1 no-underline">
+			   class="cta-btn-primary bg-white text-gray-900 px-10 py-4 rounded-full text-lg font-bold hover:bg-gray-100 shadow-2xl transition-all hover:-translate-y-1 no-underline">
 				<?php echo esc_html( $btn_label ); ?>
 			</a>
 			<?php
@@ -31,7 +31,7 @@ $img_base = get_template_directory_uri() . '/images/';
 			$btn2_url   = iibpr_get( 'iibpr_cta_btn2_url', '#' );
 			if ( $btn2_label ) : ?>
 			<a href="<?php echo esc_url( $btn2_url ); ?>"
-			   class="border-2 border-white/70 text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-white/10 transition-all text-center no-underline">
+			   class="cta-btn-secondary border-2 border-white/70 text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-white/10 transition-all text-center no-underline">
 				<?php echo esc_html( $btn2_label ); ?>
 			</a>
 			<?php endif; ?>

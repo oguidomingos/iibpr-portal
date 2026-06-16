@@ -79,7 +79,16 @@ function iibpr_widgets_init() {
 add_action( 'widgets_init', 'iibpr_widgets_init' );
 
 /* --------------------------------------------------
-   4. INCLUDES
+   4. CUSTOMIZER PREVIEW JS
+   -------------------------------------------------- */
+add_action( 'customize_preview_init', function() {
+    wp_enqueue_script( 'iibpr-customize-preview',
+        get_template_directory_uri() . '/js/customize-preview.js',
+        array( 'customize-preview', 'jquery' ), '1.0', true );
+} );
+
+/* --------------------------------------------------
+   5. INCLUDES
    -------------------------------------------------- */
 require __DIR__ . '/inc/customizer.php';
 require __DIR__ . '/inc/cpt.php';

@@ -8,10 +8,10 @@ get_header(); ?>
 <main id="main" class="site-main">
 
 	<!-- Hero -->
-	<section class="bg-primary-gradient py-16 px-4 md:px-8 text-white text-center -mt-[72px] pt-[92px]">
+	<section id="aluno-hero" class="bg-primary-gradient py-16 px-4 md:px-8 text-white text-center -mt-[72px] pt-[92px]">
 		<div class="max-w-4xl mx-auto">
-			<h1 class="text-3xl md:text-4xl font-extrabold mb-2"><?php echo esc_html( iibpr_get( 'iibpr_aluno_hero_title', 'Área do Aluno' ) ); ?></h1>
-			<p class="text-lg opacity-90"><?php echo esc_html( iibpr_get( 'iibpr_aluno_hero_subtitle', 'Acesse seus cursos e materiais.' ) ); ?></p>
+			<h1 class="text-3xl md:text-4xl font-extrabold mb-2 page-hero-title"><?php echo esc_html( iibpr_get( 'iibpr_aluno_hero_title', 'Área do Aluno' ) ); ?></h1>
+			<p class="text-lg opacity-90 page-hero-subtitle"><?php echo esc_html( iibpr_get( 'iibpr_aluno_hero_subtitle', 'Acesse seus cursos e materiais.' ) ); ?></p>
 		</div>
 	</section>
 

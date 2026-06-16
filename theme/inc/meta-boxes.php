@@ -24,6 +24,66 @@ function iibpr_register_meta_boxes() {
 add_action( 'add_meta_boxes', 'iibpr_register_meta_boxes' );
 
 /**
+ * Register meta fields for REST API access
+ */
+function iibpr_register_rest_meta() {
+	$curso_fields = array(
+		'_iibpr_course_hours', '_iibpr_course_price', '_iibpr_course_cta_url',
+		'_iibpr_course_faculty', '_iibpr_course_learnings', '_iibpr_course_audience',
+		'_iibpr_course_differentials', '_iibpr_course_modules', '_iibpr_course_faq',
+		'_iibpr_course_format', '_iibpr_course_start_date', '_iibpr_course_lessons',
+		'_iibpr_course_guarantee', '_iibpr_course_featured',
+	);
+	foreach ( $curso_fields as $key ) {
+		register_post_meta( 'iibpr_curso', $key, array(
+			'show_in_rest'  => true,
+			'single'        => true,
+			'type'          => 'string',
+			'auth_callback' => function() { return current_user_can( 'edit_posts' ); },
+		) );
+	}
+
+	$evento_fields = array(
+		'_iibpr_event_date_start', '_iibpr_event_date_end', '_iibpr_event_location',
+		'_iibpr_event_modality', '_iibpr_event_cta_url', '_iibpr_event_type',
+		'_iibpr_event_price', '_iibpr_event_hours', '_iibpr_event_speakers',
+		'_iibpr_event_schedule', '_iibpr_event_featured',
+	);
+	foreach ( $evento_fields as $key ) {
+		register_post_meta( 'iibpr_evento', $key, array(
+			'show_in_rest'  => true,
+			'single'        => true,
+			'type'          => 'string',
+			'auth_callback' => function() { return current_user_can( 'edit_posts' ); },
+		) );
+	}
+
+	$depoimento_fields = array(
+		'_iibpr_testimonial_author_role', '_iibpr_testimonial_author_location',
+		'_iibpr_testimonial_rating', '_iibpr_testimonial_date',
+	);
+	foreach ( $depoimento_fields as $key ) {
+		register_post_meta( 'iibpr_depoimento', $key, array(
+			'show_in_rest'  => true,
+			'single'        => true,
+			'type'          => 'string',
+			'auth_callback' => function() { return current_user_can( 'edit_posts' ); },
+		) );
+	}
+
+	$equipe_fields = array( '_iibpr_team_role', '_iibpr_team_specialty' );
+	foreach ( $equipe_fields as $key ) {
+		register_post_meta( 'iibpr_equipe', $key, array(
+			'show_in_rest'  => true,
+			'single'        => true,
+			'type'          => 'string',
+			'auth_callback' => function() { return current_user_can( 'edit_posts' ); },
+		) );
+	}
+}
+add_action( 'init', 'iibpr_register_rest_meta' );
+
+/**
  * Curso meta box callback
  */
 function iibpr_curso_meta_box_cb( $post ) {
@@ -39,6 +99,10 @@ function iibpr_curso_meta_box_cb( $post ) {
         '_iibpr_course_differentials' => array( 'label' => 'Diferenciais (um item por linha)', 'type' => 'textarea' ),
         '_iibpr_course_modules'       => array( 'label' => 'Módulos (formato: Título|Descrição — um por linha)', 'type' => 'textarea' ),
         '_iibpr_course_faq'           => array( 'label' => 'FAQ (formato: Pergunta|Resposta — um por linha)', 'type' => 'textarea' ),
+        '_iibpr_course_format'        => array( 'label' => 'Formato', 'type' => 'text', 'placeholder' => 'Ex: Gravado / Ao Vivo / Presencial' ),
+        '_iibpr_course_start_date'    => array( 'label' => 'Data de Início', 'type' => 'date' ),
+        '_iibpr_course_lessons'       => array( 'label' => 'Número de Aulas', 'type' => 'text', 'placeholder' => 'Ex: 48 aulas' ),
+        '_iibpr_course_guarantee'     => array( 'label' => 'Texto de Garantia', 'type' => 'textarea' ),
     );
 
     echo '<table class="form-table">';
@@ -157,7 +221,7 @@ function iibpr_save_meta_boxes( $post_id ) {
 
     // Curso fields
     if ( $post_type === 'iibpr_curso' && isset( $_POST['iibpr_curso_nonce_field'] ) && wp_verify_nonce( $_POST['iibpr_curso_nonce_field'], 'iibpr_curso_nonce' ) ) {
-        $text_fields = array( '_iibpr_course_hours', '_iibpr_course_price', '_iibpr_course_faculty', '_iibpr_course_learnings', '_iibpr_course_audience', '_iibpr_course_differentials', '_iibpr_course_modules', '_iibpr_course_faq' );
+        $text_fields = array( '_iibpr_course_hours', '_iibpr_course_price', '_iibpr_course_faculty', '_iibpr_course_learnings', '_iibpr_course_audience', '_iibpr_course_differentials', '_iibpr_course_modules', '_iibpr_course_faq', '_iibpr_course_format', '_iibpr_course_start_date', '_iibpr_course_lessons', '_iibpr_course_guarantee' );
         foreach ( $text_fields as $field ) {
             if ( isset( $_POST[ $field ] ) ) {
                 update_post_meta( $post_id, $field, sanitize_textarea_field( $_POST[ $field ] ) );

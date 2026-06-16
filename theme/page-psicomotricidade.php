@@ -11,21 +11,21 @@ $hero_bg = iibpr_get( 'iibpr_prp_hero_bg' );
 <main id="main" class="site-main">
 
 	<!-- Hero -->
-	<section class="py-20 px-4 md:px-8 text-white text-center -mt-[72px] pt-[92px] relative overflow-hidden"
+	<section id="prp-hero" class="py-20 px-4 md:px-8 text-white text-center -mt-[72px] pt-[92px] relative overflow-hidden"
 	         style="background-image: linear-gradient(135deg, rgba(64,72,86,0.88) 0%, rgba(58,90,42,0.82) 100%), url('<?php echo $hero_bg ? esc_url( $hero_bg ) : esc_url( $img . 'services-banner.jpg' ); ?>'); background-size: cover; background-position: center;">
 		<div class="max-w-4xl mx-auto relative z-10">
-			<h1 class="text-4xl md:text-5xl font-extrabold mb-4"><?php echo esc_html( iibpr_get( 'iibpr_prp_hero_title', 'O que é Psicomotricidade Relacional Psicodinâmica?' ) ); ?></h1>
-			<p class="text-xl opacity-90"><?php echo esc_html( iibpr_get( 'iibpr_prp_hero_subtitle', 'O estudo do Ser Humano através do seu corpo em movimento e em relação ao seu mundo interno e externo.' ) ); ?></p>
+			<h1 class="text-4xl md:text-5xl font-extrabold mb-4 page-hero-title"><?php echo esc_html( iibpr_get( 'iibpr_prp_hero_title', 'O que é Psicomotricidade Relacional Psicodinâmica?' ) ); ?></h1>
+			<p class="text-xl opacity-90 page-hero-subtitle"><?php echo esc_html( iibpr_get( 'iibpr_prp_hero_subtitle', 'O estudo do Ser Humano através do seu corpo em movimento e em relação ao seu mundo interno e externo.' ) ); ?></p>
 		</div>
 	</section>
 
 	<!-- Conceito / O que é PRP -->
-	<section class="py-20 px-4 md:px-8 bg-white">
+	<section id="prp-conceito" class="py-20 px-4 md:px-8 bg-white">
 		<div class="max-w-4xl mx-auto">
 			<div class="grid md:grid-cols-2 gap-12 items-center">
 				<div>
-					<p class="section-label"><?php echo esc_html( iibpr_get( 'iibpr_prp_conceito_label', 'Conceito' ) ); ?></p>
-					<h2 class="text-3xl font-extrabold text-gray-900 mt-2"><?php echo esc_html( iibpr_get( 'iibpr_prp_conceito_title', 'Entendendo a PRP' ) ); ?></h2>
+					<p class="section-label section-label-text"><?php echo esc_html( iibpr_get( 'iibpr_prp_conceito_label', 'Conceito' ) ); ?></p>
+					<h2 class="text-3xl font-extrabold text-gray-900 mt-2 section-heading"><?php echo esc_html( iibpr_get( 'iibpr_prp_conceito_title', 'Entendendo a PRP' ) ); ?></h2>
 					<div class="text-gray-600 text-lg leading-relaxed mt-4 space-y-4">
 						<?php for ( $ti = 1; $ti <= 3; $ti++ ) :
 							$tx = iibpr_get( "iibpr_prp_conceito_text_{$ti}" );
@@ -43,11 +43,11 @@ $hero_bg = iibpr_get( 'iibpr_prp_hero_bg' );
 	</section>
 
 	<!-- Três Pilares -->
-	<section class="py-20 px-4 md:px-8 bg-gray-50">
+	<section id="prp-pilares" class="py-20 px-4 md:px-8 bg-gray-50">
 		<div class="max-w-4xl mx-auto">
 			<div class="text-center mb-14">
-				<p class="section-label"><?php echo esc_html( iibpr_get( 'iibpr_prp_pillars_label', 'Fundamentos' ) ); ?></p>
-				<h2 class="text-3xl font-extrabold text-gray-900 mt-2"><?php echo esc_html( iibpr_get( 'iibpr_prp_pillars_title', 'Os Três Pilares' ) ); ?></h2>
+				<p class="section-label section-label-text"><?php echo esc_html( iibpr_get( 'iibpr_prp_pillars_label', 'Fundamentos' ) ); ?></p>
+				<h2 class="text-3xl font-extrabold text-gray-900 mt-2 section-heading"><?php echo esc_html( iibpr_get( 'iibpr_prp_pillars_title', 'Os Três Pilares' ) ); ?></h2>
 			</div>
 			<?php
 			$pillar_img_defaults = array( 1 => 'acao-movimento-1.jpg', 2 => 'acao-grupo-2.jpg', 3 => 'acao-formacao-1.jpg' );
@@ -65,7 +65,7 @@ $hero_bg = iibpr_get( 'iibpr_prp_hero_bg' );
 					</div>
 					<div class="p-6 border-t-4 border-iibpr-green">
 						<h3 class="text-xl font-bold text-gray-900 mb-3"><?php echo esc_html( iibpr_get( "iibpr_prp_pillar_{$pi}_title", '' ) ); ?></h3>
-						<p class="text-gray-600 leading-relaxed text-sm"><?php echo wp_kses_post( iibpr_get( "iibpr_prp_pillar_{$pi}_text", '' ) ); ?></p>
+						<p class="text-gray-600 leading-relaxed text-sm pillar-<?php echo $pi; ?>-text"><?php echo wp_kses_post( iibpr_get( "iibpr_prp_pillar_{$pi}_text", '' ) ); ?></p>
 					</div>
 				</div>
 				<?php endfor; ?>
@@ -75,11 +75,11 @@ $hero_bg = iibpr_get( 'iibpr_prp_hero_bg' );
 
 
 	<!-- Áreas de Atuação -->
-	<section class="py-20 px-4 md:px-8 bg-gray-50">
+	<section id="prp-areas" class="py-20 px-4 md:px-8 bg-gray-50">
 		<div class="max-w-4xl mx-auto">
 			<div class="text-center mb-14">
-				<p class="section-label"><?php echo esc_html( iibpr_get( 'iibpr_prp_areas_label', 'Áreas de Atuação' ) ); ?></p>
-				<h2 class="text-3xl font-extrabold text-gray-900 mt-2"><?php echo esc_html( iibpr_get( 'iibpr_prp_areas_title', 'Onde Atua a PRP' ) ); ?></h2>
+				<p class="section-label section-label-text"><?php echo esc_html( iibpr_get( 'iibpr_prp_areas_label', 'Áreas de Atuação' ) ); ?></p>
+				<h2 class="text-3xl font-extrabold text-gray-900 mt-2 section-heading"><?php echo esc_html( iibpr_get( 'iibpr_prp_areas_title', 'Onde Atua a PRP' ) ); ?></h2>
 			</div>
 			<?php
 			$area_img_defaults = array( 1 => 'bg-criancas.jpg', 2 => 'criancas-brincando.jpg', 3 => 'content-03.jpg' );
@@ -96,8 +96,8 @@ $hero_bg = iibpr_get( 'iibpr_prp_hero_bg' );
 						     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
 					</div>
 					<div class="p-6">
-						<h3 class="text-xl font-bold text-gray-900 mb-3"><?php echo esc_html( iibpr_get( "iibpr_prp_area_{$ai}_title", '' ) ); ?></h3>
-						<p class="text-gray-600 leading-relaxed text-sm"><?php echo wp_kses_post( iibpr_get( "iibpr_prp_area_{$ai}_text", '' ) ); ?></p>
+						<h3 class="text-xl font-bold text-gray-900 mb-3 area-<?php echo $ai; ?>-title"><?php echo esc_html( iibpr_get( "iibpr_prp_area_{$ai}_title", '' ) ); ?></h3>
+						<p class="text-gray-600 leading-relaxed text-sm area-<?php echo $ai; ?>-text"><?php echo wp_kses_post( iibpr_get( "iibpr_prp_area_{$ai}_text", '' ) ); ?></p>
 					</div>
 				</div>
 				<?php endfor; ?>
@@ -106,17 +106,17 @@ $hero_bg = iibpr_get( 'iibpr_prp_hero_bg' );
 	</section>
 
 	<!-- Saúde e Bem-Estar -->
-	<section class="py-20 px-4 md:px-8 bg-white">
+	<section id="prp-saude" class="py-20 px-4 md:px-8 bg-white">
 		<div class="max-w-4xl mx-auto text-center">
-			<p class="section-label"><?php echo esc_html( iibpr_get( 'iibpr_prp_health_label', 'Saúde e Bem-Estar' ) ); ?></p>
-			<h2 class="text-3xl font-extrabold text-gray-900 mt-2 mb-6"><?php echo esc_html( iibpr_get( 'iibpr_prp_health_title', 'Viva o bem-estar e potencialize-se' ) ); ?></h2>
-			<p class="text-gray-600 text-lg leading-relaxed max-w-2xl mx-auto mb-10"><?php echo wp_kses_post( iibpr_get( 'iibpr_prp_health_intro', '' ) ); ?></p>
+			<p class="section-label section-label-text"><?php echo esc_html( iibpr_get( 'iibpr_prp_health_label', 'Saúde e Bem-Estar' ) ); ?></p>
+			<h2 class="text-3xl font-extrabold text-gray-900 mt-2 mb-6 section-heading"><?php echo esc_html( iibpr_get( 'iibpr_prp_health_title', 'Viva o bem-estar e potencialize-se' ) ); ?></h2>
+			<p class="text-gray-600 text-lg leading-relaxed max-w-2xl mx-auto mb-10 health-intro"><?php echo wp_kses_post( iibpr_get( 'iibpr_prp_health_intro', '' ) ); ?></p>
 
 			<div class="grid md:grid-cols-2 gap-8 text-left">
 				<?php for ( $bi = 1; $bi <= 4; $bi++ ) : ?>
 				<div class="benefit-card">
-					<h3 class="text-lg font-bold text-gray-900 mb-2"><?php echo esc_html( iibpr_get( "iibpr_prp_benefit_{$bi}_title", '' ) ); ?></h3>
-					<p class="text-gray-600 text-sm"><?php echo wp_kses_post( iibpr_get( "iibpr_prp_benefit_{$bi}_text", '' ) ); ?></p>
+					<h3 class="text-lg font-bold text-gray-900 mb-2 benefit-<?php echo $bi; ?>-title"><?php echo esc_html( iibpr_get( "iibpr_prp_benefit_{$bi}_title", '' ) ); ?></h3>
+					<p class="text-gray-600 text-sm benefit-<?php echo $bi; ?>-text"><?php echo wp_kses_post( iibpr_get( "iibpr_prp_benefit_{$bi}_text", '' ) ); ?></p>
 				</div>
 				<?php endfor; ?>
 			</div>
@@ -124,13 +124,21 @@ $hero_bg = iibpr_get( 'iibpr_prp_hero_bg' );
 	</section>
 
 	<!-- Estrutura da Formação -->
-	<section class="py-20 px-4 md:px-8 bg-gray-50">
+	<section id="prp-estrutura" class="py-20 px-4 md:px-8 bg-gray-50">
 		<div class="max-w-4xl mx-auto">
 			<div class="text-center mb-14">
-				<p class="section-label"><?php echo esc_html( iibpr_get( 'iibpr_prp_struct_label', 'Estrutura' ) ); ?></p>
-				<h2 class="text-3xl font-extrabold text-gray-900 mt-2"><?php echo esc_html( iibpr_get( 'iibpr_prp_struct_title', 'Estrutura da Formação — Ano Propedêutico' ) ); ?></h2>
+				<p class="section-label section-label-text"><?php echo esc_html( iibpr_get( 'iibpr_prp_struct_label', 'Estrutura' ) ); ?></p>
+				<h2 class="text-3xl font-extrabold text-gray-900 mt-2 section-heading"><?php echo esc_html( iibpr_get( 'iibpr_prp_struct_title', 'Estrutura da Formação — Ano Propedêutico' ) ); ?></h2>
 			</div>
 
+		<?php
+		$mod_icons = array(
+			'A' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>',
+			'B' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>',
+			'C' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>',
+		);
+		$mod_numbers = array( 'A' => '01', 'B' => '02', 'C' => '03' );
+		?>
 			<div class="space-y-8">
 				<?php foreach ( array( 'A', 'B', 'C' ) as $mod_key ) :
 					$mod_title = iibpr_get( "iibpr_prp_module_{$mod_key}_title", '' );
@@ -139,7 +147,8 @@ $hero_bg = iibpr_get( 'iibpr_prp_hero_bg' );
 				?>
 				<div class="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
 					<h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-						<span class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center text-green-600 font-bold"><?php echo esc_html( $mod_key ); ?></span>
+						<span class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center text-green-600"><?php echo $mod_icons[ $mod_key ]; ?></span>
+						<span class="text-sm text-green-500 font-bold"><?php echo esc_html( $mod_numbers[ $mod_key ] ); ?></span>
 						<?php echo esc_html( $mod_title ); ?>
 					</h3>
 					<?php if ( $mod_key === 'A' ) : ?>
@@ -172,11 +181,11 @@ $hero_bg = iibpr_get( 'iibpr_prp_hero_bg' );
 	</section>
 
 	<!-- Profissões -->
-	<section class="py-20 px-4 md:px-8 bg-white">
+	<section id="prp-profissoes" class="py-20 px-4 md:px-8 bg-white">
 		<div class="max-w-4xl mx-auto">
 			<div class="text-center mb-10">
-				<p class="section-label"><?php echo esc_html( iibpr_get( 'iibpr_prp_prof_label', 'Profissionais' ) ); ?></p>
-				<h2 class="text-3xl font-extrabold text-gray-900 mt-2"><?php echo esc_html( iibpr_get( 'iibpr_prp_prof_title', 'Para Quais Profissões' ) ); ?></h2>
+				<p class="section-label section-label-text"><?php echo esc_html( iibpr_get( 'iibpr_prp_prof_label', 'Profissionais' ) ); ?></p>
+				<h2 class="text-3xl font-extrabold text-gray-900 mt-2 section-heading"><?php echo esc_html( iibpr_get( 'iibpr_prp_prof_title', 'Para Quais Profissões' ) ); ?></h2>
 			</div>
 			<div class="flex flex-wrap justify-center gap-3">
 				<?php
@@ -191,10 +200,10 @@ $hero_bg = iibpr_get( 'iibpr_prp_hero_bg' );
 
 	<!-- CTA -->
 	<?php $prp_wa = iibpr_get( 'iibpr_prp_cta_btn2_url', 'https://wa.me/5561991572149' ); ?>
-	<section class="py-24 px-4 md:px-8 bg-gradient-to-br from-green-700 via-green-600 to-green-500 text-white text-center">
+	<section id="prp-cta" class="py-24 px-4 md:px-8 bg-gradient-to-br from-green-700 via-green-600 to-green-500 text-white text-center">
 		<div class="max-w-3xl mx-auto">
-			<h2 class="text-3xl md:text-4xl font-extrabold mb-6"><?php echo esc_html( iibpr_get( 'iibpr_prp_cta_title', 'Inicie sua Formação em PRP' ) ); ?></h2>
-			<p class="text-xl opacity-90 mb-8"><?php echo wp_kses_post( iibpr_get( 'iibpr_prp_cta_text', 'Conheça nossos cursos e formações em Psicomotricidade Relacional Psicodinâmica.' ) ); ?></p>
+			<h2 class="text-3xl md:text-4xl font-extrabold mb-6 cta-title"><?php echo esc_html( iibpr_get( 'iibpr_prp_cta_title', 'Inicie sua Formação em PRP' ) ); ?></h2>
+			<p class="text-xl opacity-90 mb-8 cta-text"><?php echo wp_kses_post( iibpr_get( 'iibpr_prp_cta_text', 'Conheça nossos cursos e formações em Psicomotricidade Relacional Psicodinâmica.' ) ); ?></p>
 			<div class="flex flex-col sm:flex-row gap-4 justify-center">
 				<a href="<?php echo esc_url( site_url( '/cursos' ) ); ?>"
 				   class="bg-white text-green-700 px-10 py-4 rounded-full text-lg font-bold hover:bg-gray-100 shadow-2xl transition-all hover:-translate-y-1">

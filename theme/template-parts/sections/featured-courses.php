@@ -3,15 +3,42 @@
  * Template Part: Featured Courses — with real course photos
  */
 $img_base = get_template_directory_uri() . '/images/';
+$selected_course_ids = array_values( array_filter( array_map(
+	'absint',
+	array(
+		iibpr_get( 'iibpr_home_featured_course_1', 0 ),
+		iibpr_get( 'iibpr_home_featured_course_2', 0 ),
+		iibpr_get( 'iibpr_home_featured_course_3', 0 ),
+		iibpr_get( 'iibpr_home_featured_course_4', 0 ),
+	)
+) ) );
 
-$courses = new WP_Query( array(
-    'post_type'      => 'iibpr_curso',
-    'posts_per_page' => 4,
-    'meta_key'       => '_iibpr_course_featured',
-    'meta_value'     => '1',
-    'orderby'        => 'menu_order date',
-    'order'          => 'ASC',
-) );
+$query_args = array(
+	'post_type'      => 'iibpr_curso',
+	'posts_per_page' => 4,
+);
+
+if ( ! empty( $selected_course_ids ) ) {
+	$query_args['post__in'] = $selected_course_ids;
+	$query_args['orderby']  = 'post__in';
+} else {
+	$query_args['meta_key']   = '_iibpr_course_featured';
+	$query_args['meta_value'] = '1';
+	$query_args['orderby']    = 'menu_order date';
+	$query_args['order']      = 'ASC';
+}
+
+$courses = new WP_Query( $query_args );
+
+// Fallback: if no featured courses, show the 4 most recent
+if ( ! $courses->have_posts() ) {
+	$courses = new WP_Query( array(
+		'post_type'      => 'iibpr_curso',
+		'posts_per_page' => 4,
+		'orderby'        => 'date',
+		'order'          => 'DESC',
+	) );
+}
 
 $has_cpt_courses = $courses->have_posts();
 
@@ -22,13 +49,13 @@ $course_images = array(
 	3 => $img_base . 'grafomotricidade.png',
 );
 ?>
-<section id="cursos" class="section-padding bg-gray-50">
+<section id="cursos-destaque" class="section-padding bg-gray-50">
 	<div class="container-narrow">
 
 		<div class="text-center mb-14 fade-up">
-			<p class="section-label">Formação</p>
-			<h2 class="section-title">Cursos em Destaque</h2>
-			<p class="section-subtitle">Formações reconhecidas para profissionais que querem fazer a diferença.</p>
+			<p class="section-label home-courses-label"><?php echo esc_html( iibpr_get( 'iibpr_home_courses_label', 'Formação' ) ); ?></p>
+			<h2 class="section-title home-courses-title"><?php echo wp_kses_post( iibpr_get( 'iibpr_home_courses_title', 'Cursos em Destaque' ) ); ?></h2>
+			<p class="section-subtitle home-courses-subtitle"><?php echo wp_kses_post( iibpr_get( 'iibpr_home_courses_subtitle', 'Formações reconhecidas para profissionais que querem fazer a diferença.' ) ); ?></p>
 		</div>
 
 		<?php if ( $has_cpt_courses ) : ?>
@@ -54,13 +81,13 @@ $course_images = array(
 				$course_img = $image ? $image : ( isset( $course_images[ $i ] ) ? $course_images[ $i ] : '' );
 			?>
 			<article class="course-card h-full flex flex-col fade-up fade-up-delay-<?php echo $i; ?>">
-				<div class="h-52 overflow-hidden">
+				<div class="course-card-media h-52 overflow-hidden">
 					<?php if ( $course_img ) : ?>
 					<img src="<?php echo esc_url( $course_img ); ?>" alt="<?php echo esc_attr( $title ); ?>"
-					     class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" loading="lazy">
+					     class="course-card-image transition-transform duration-300" loading="lazy">
 					<?php else : ?>
 					<div class="h-full bg-gradient-to-br from-iibpr-green to-iibpr-green-dark flex items-center justify-center">
-						<svg class="w-16 h-16 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+						<svg class="w-16 h-16 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
 					</div>
 					<?php endif; ?>
 				</div>

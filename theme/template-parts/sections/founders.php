@@ -3,9 +3,9 @@
  * Template Part: Founders Section — Real photos and bios
  */
 $img_base = get_template_directory_uri() . '/images/';
-$f_photo_defaults = array( 1 => 'fabiane2.png', 2 => 'augusto2.jpg', 3 => 'mauro-quadrado.jpg' );
+$f_photo_defaults = array( 1 => 'fabiane2.png', 2 => 'augusto2.jpg' );
 ?>
-<section class="section-padding bg-white">
+<section id="fundadores" class="section-padding bg-white">
 	<div class="container-narrow">
 
 		<div class="text-center mb-14 fade-up">
@@ -14,8 +14,8 @@ $f_photo_defaults = array( 1 => 'fabiane2.png', 2 => 'augusto2.jpg', 3 => 'mauro
 			<p class="section-subtitle">Profissionais dedicados à psicomotricidade relacional há mais de duas décadas.</p>
 		</div>
 
-		<div class="grid md:grid-cols-3 gap-8">
-			<?php for ( $fi = 1; $fi <= 3; $fi++ ) :
+		<div class="grid gap-8 md:grid-cols-2">
+			<?php for ( $fi = 1; $fi <= 2; $fi++ ) :
 				$f_photo = iibpr_get( "iibpr_founder_{$fi}_photo" );
 			?>
 			<div class="text-center group fade-up fade-up-delay-<?php echo $fi; ?>">

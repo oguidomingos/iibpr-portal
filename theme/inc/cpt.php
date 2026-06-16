@@ -29,7 +29,7 @@ function iibpr_register_post_types() {
         'has_archive'  => true,
         'rewrite'      => array( 'slug' => 'cursos' ),
         'menu_icon'    => 'dashicons-welcome-learn-more',
-        'supports'     => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
+        'supports'     => array( 'title', 'editor', 'thumbnail', 'excerpt', 'custom-fields' ),
         'show_in_rest' => true,
     ) );
 
@@ -52,7 +52,7 @@ function iibpr_register_post_types() {
         'has_archive'  => true,
         'rewrite'      => array( 'slug' => 'eventos' ),
         'menu_icon'    => 'dashicons-calendar-alt',
-        'supports'     => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
+        'supports'     => array( 'title', 'editor', 'thumbnail', 'excerpt', 'custom-fields' ),
         'show_in_rest' => true,
     ) );
 
@@ -70,7 +70,7 @@ function iibpr_register_post_types() {
         'show_ui'      => true,
         'has_archive'  => false,
         'menu_icon'    => 'dashicons-format-quote',
-        'supports'     => array( 'title', 'editor', 'thumbnail' ),
+        'supports'     => array( 'title', 'editor', 'thumbnail', 'custom-fields' ),
         'show_in_rest' => true,
     ) );
 
@@ -88,7 +88,7 @@ function iibpr_register_post_types() {
         'show_ui'      => true,
         'has_archive'  => false,
         'menu_icon'    => 'dashicons-groups',
-        'supports'     => array( 'title', 'editor', 'thumbnail' ),
+        'supports'     => array( 'title', 'editor', 'thumbnail', 'custom-fields' ),
         'show_in_rest' => true,
     ) );
 }

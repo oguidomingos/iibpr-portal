@@ -13,7 +13,7 @@ $gallery = array(
 	array( 'src' => 'mod1-2022.png',           'alt' => 'Módulo 1 — Turma 2022' ),
 	array( 'src' => 'acao-grupo-3.jpg',        'alt' => 'Atividade em grupo' ),
 	array( 'src' => 'evento-24-09-22.png',     'alt' => 'Evento Setembro 2022' ),
-	array( 'src' => 'mauro-palestra2.png',     'alt' => 'Palestra Prof. Mauro Vecchiato' ),
+	array( 'src' => 'evento-12-11-22.png',     'alt' => 'Evento Novembro 2022' ),
 	array( 'src' => 'acao-movimento-5.jpg',    'alt' => 'Psicomotricidade em ação' ),
 	array( 'src' => 'seminariodidatico2.jpg',  'alt' => 'Seminário Didático' ),
 );

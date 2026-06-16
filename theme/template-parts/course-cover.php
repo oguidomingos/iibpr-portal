@@ -29,7 +29,7 @@ if ( ! $title ) {
 $img_base = get_template_directory_uri() . '/images/';
 ?>
 
-<div class="w-full h-full bg-gradient-to-br from-[#6CB350] via-[#6CB350] to-[#5a9f47] relative overflow-hidden flex flex-col items-center justify-center p-8 text-white min-h-[400px]">
+<div class="w-full h-full bg-iibpr-green relative overflow-hidden flex flex-col items-center justify-center p-8 text-white min-h-[400px]">
 
 	<!-- Texture overlay (22% opacity) -->
 	<div class="absolute inset-0 bg-[url('<?php echo esc_url( $img_base . 'textura-fundo.jpg' ); ?>')] bg-cover bg-center opacity-[0.22] pointer-events-none z-0"></div>
@@ -39,7 +39,7 @@ $img_base = get_template_directory_uri() . '/images/';
 
 	<!-- Level/Type badge (top-right) -->
 	<?php if ( $level || $type ) : ?>
-	<div class="absolute top-6 right-6 z-10 bg-[#A6D16C] text-[#404856] text-xs px-4 py-2 rounded-full font-bold flex items-center gap-2">
+	<div class="absolute top-6 right-6 z-10 bg-iibpr-light text-iibpr-charcoal text-xs px-4 py-2 rounded-full font-bold flex items-center gap-2">
 		<?php if ( $level ) echo esc_html( $level ); ?>
 		<?php if ( $level && $type ) echo '•'; ?>
 		<?php if ( $type ) echo esc_html( $type ); ?>

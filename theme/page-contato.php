@@ -11,11 +11,11 @@ $hero_bg = iibpr_get( 'iibpr_contato_hero_bg' );
 <main id="main" class="site-main">
 
 	<!-- Hero -->
-	<section class="py-20 px-4 md:px-8 text-white text-center -mt-[72px] pt-[92px] relative overflow-hidden"
+	<section id="contato-hero" class="py-20 px-4 md:px-8 text-white text-center -mt-[72px] pt-[92px] relative overflow-hidden"
 	         style="background-image: linear-gradient(135deg, rgba(64,72,86,0.88) 0%, rgba(58,90,42,0.82) 100%), url('<?php echo $hero_bg ? esc_url( $hero_bg ) : esc_url( $img . 'acao-grupo-1.jpg' ); ?>'); background-size: cover; background-position: center;">
 		<div class="max-w-4xl mx-auto relative z-10">
-			<h1 class="text-4xl md:text-5xl font-extrabold mb-4"><?php echo esc_html( iibpr_get( 'iibpr_contato_hero_title', 'Contato' ) ); ?></h1>
-			<p class="text-xl opacity-90"><?php echo esc_html( iibpr_get( 'iibpr_contato_hero_subtitle', 'Fale conosco. Estamos aqui para ajudar.' ) ); ?></p>
+			<h1 class="text-4xl md:text-5xl font-extrabold mb-4 page-hero-title"><?php echo esc_html( iibpr_get( 'iibpr_contato_hero_title', 'Contato' ) ); ?></h1>
+			<p class="text-xl opacity-90 page-hero-subtitle"><?php echo esc_html( iibpr_get( 'iibpr_contato_hero_subtitle', 'Fale conosco. Estamos aqui para ajudar.' ) ); ?></p>
 		</div>
 	</section>
 
@@ -25,7 +25,7 @@ $hero_bg = iibpr_get( 'iibpr_contato_hero_bg' );
 
 				<!-- Contact Form -->
 				<div>
-					<h2 class="text-2xl font-bold text-gray-900 mb-6"><?php echo esc_html( iibpr_get( 'iibpr_contato_form_heading', 'Envie uma mensagem' ) ); ?></h2>
+					<h2 class="text-2xl font-bold text-gray-900 mb-6 section-heading"><?php echo esc_html( iibpr_get( 'iibpr_contato_form_heading', 'Envie uma mensagem' ) ); ?></h2>
 					<form method="post" class="space-y-4">
 						<div>
 							<label for="contact-name" class="block text-sm font-medium text-gray-700 mb-1">Nome</label>
@@ -53,7 +53,7 @@ $hero_bg = iibpr_get( 'iibpr_contato_hero_bg' );
 
 				<!-- Contact Info -->
 				<div>
-					<h2 class="text-2xl font-bold text-gray-900 mb-6"><?php echo esc_html( iibpr_get( 'iibpr_contato_info_heading', 'Informações' ) ); ?></h2>
+					<h2 class="text-2xl font-bold text-gray-900 mb-6 section-heading"><?php echo esc_html( iibpr_get( 'iibpr_contato_info_heading', 'Informações' ) ); ?></h2>
 
 					<div class="space-y-6">
 						<?php $email = iibpr_get( 'iibpr_footer_email', 'contato@institutoibpr.org.br' ); ?>

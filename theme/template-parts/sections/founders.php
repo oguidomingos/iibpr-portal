@@ -1,53 +1,41 @@
 <?php
 /**
- * Template Part: Founders Section — Real photos and bios
+ * Template Part: Founders Section — brand band with couple cutout.
+ *
+ * @package iibpr_main
  */
 $img_base = get_template_directory_uri() . '/images/';
-$f_photo_defaults = array( 1 => 'fabiane2.png', 2 => 'augusto2.jpg' );
+$brand    = $img_base . 'brand/';
+$cutout   = iibpr_get( 'iibpr_founders_cutout', $brand . 'cutout-couple.png' );
+$kicker   = iibpr_get( 'iibpr_founders_kicker', 'Quem Somos' );
+$title    = iibpr_get( 'iibpr_founders_title', 'Mais de 25 anos dedicados à psicomotricidade' );
+$text     = iibpr_get( 'iibpr_founders_text', 'Fabiane Alves Crispim e Augusto Parras Albuquerque conduzem formações que unem teoria e prática — o corpo em movimento e em relação como caminho de transformação.' );
 ?>
-<section id="fundadores" class="section-padding bg-white">
-	<div class="container-narrow">
-
-		<div class="text-center mb-14 fade-up">
-			<p class="section-label">Quem Somos</p>
-			<h2 class="section-title">Nossos Fundadores</h2>
-			<p class="section-subtitle">Profissionais dedicados à psicomotricidade relacional há mais de duas décadas.</p>
+<style>
+	.iibpr-founders{position:relative;overflow:hidden;background:#404856;color:#fff;}
+	.iibpr-founders__tex{position:absolute;inset:0;z-index:0;opacity:.08;background-repeat:repeat;background-size:260px auto;}
+	.iibpr-founders__wrap{position:relative;z-index:2;display:flex;align-items:center;gap:40px;
+		max-width:1200px;margin:0 auto;padding:0 32px;min-height:520px;}
+	.iibpr-founders__cut{align-self:flex-end;height:480px;width:auto;object-fit:contain;object-position:bottom;
+		filter:drop-shadow(0 18px 40px rgba(0,0,0,.4));flex:0 0 auto;}
+	.iibpr-founders__body{max-width:540px;}
+	.iibpr-founders__kicker{color:#A6D16C;font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:13px;}
+	.iibpr-founders__title{font-family:"Playfair Display",ui-serif,Georgia,serif;font-weight:800;font-size:clamp(28px,3.4vw,42px);line-height:1.1;margin:12px 0 16px;}
+	.iibpr-founders__text{font-size:17px;line-height:1.7;color:rgba(255,255,255,.85);}
+	@media (max-width:860px){
+		.iibpr-founders__wrap{flex-direction:column;text-align:center;padding:48px 24px;gap:8px;}
+		.iibpr-founders__cut{height:360px;}
+		.iibpr-founders__body{max-width:100%;}
+	}
+</style>
+<section id="fundadores" class="iibpr-founders">
+	<div class="iibpr-founders__tex" aria-hidden="true" style="background-image:url('<?php echo esc_url( $brand . 'texture-1.png' ); ?>');"></div>
+	<div class="iibpr-founders__wrap">
+		<img class="iibpr-founders__cut" src="<?php echo esc_url( $cutout ); ?>" alt="Fundadores do IIBPR" loading="lazy">
+		<div class="iibpr-founders__body fade-up">
+			<div class="iibpr-founders__kicker"><?php echo esc_html( $kicker ); ?></div>
+			<h2 class="iibpr-founders__title"><?php echo esc_html( $title ); ?></h2>
+			<p class="iibpr-founders__text"><?php echo wp_kses_post( $text ); ?></p>
 		</div>
-
-		<div class="grid gap-8 md:grid-cols-2">
-			<?php for ( $fi = 1; $fi <= 2; $fi++ ) :
-				$f_photo = iibpr_get( "iibpr_founder_{$fi}_photo" );
-			?>
-			<div class="text-center group fade-up fade-up-delay-<?php echo $fi; ?>">
-				<div class="w-40 h-40 mx-auto mb-5 rounded-full overflow-hidden border-4 border-iibpr-green/20 group-hover:border-iibpr-green transition-colors duration-300">
-					<img src="<?php echo $f_photo ? esc_url( $f_photo ) : esc_url( $img_base . $f_photo_defaults[ $fi ] ); ?>"
-					     alt="<?php echo esc_attr( iibpr_get( "iibpr_founder_{$fi}_name", '' ) ); ?>"
-					     class="w-full h-full object-cover" loading="lazy">
-				</div>
-				<h3 class="text-xl font-bold text-gray-900"><?php echo esc_html( iibpr_get( "iibpr_founder_{$fi}_name", '' ) ); ?></h3>
-				<p class="text-iibpr-green font-medium text-sm mb-3"><?php echo esc_html( iibpr_get( "iibpr_founder_{$fi}_role_detail", '' ) ); ?></p>
-				<p class="text-gray-600 text-sm leading-relaxed"><?php echo wp_kses_post( iibpr_get( "iibpr_founder_{$fi}_bio_short", '' ) ); ?></p>
-			</div>
-			<?php endfor; ?>
-		</div>
-
-		<!-- Team photo strip -->
-		<div class="mt-16 fade-up">
-			<div class="flex items-center gap-3 overflow-hidden rounded-2xl">
-				<div class="flex-1 h-48 overflow-hidden">
-					<img src="<?php echo esc_url( $img_base . 'quem-somos-2.png' ); ?>" alt="Equipe IIBPR"
-					     class="w-full h-full object-cover" loading="lazy">
-				</div>
-				<div class="flex-1 h-48 overflow-hidden hidden md:block">
-					<img src="<?php echo esc_url( $img_base . 'acao-grupo-6.jpg' ); ?>" alt="Atividade em grupo"
-					     class="w-full h-full object-cover" loading="lazy">
-				</div>
-				<div class="flex-1 h-48 overflow-hidden hidden lg:block">
-					<img src="<?php echo esc_url( $img_base . 'acao-formacao-5.jpg' ); ?>" alt="Formação presencial"
-					     class="w-full h-full object-cover" loading="lazy">
-				</div>
-			</div>
-		</div>
-
 	</div>
 </section>

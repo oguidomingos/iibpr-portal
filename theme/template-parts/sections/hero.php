@@ -97,16 +97,23 @@ $autoplay = absint( iibpr_get( 'iibpr_hero_autoplay', 6000 ) );
 ?>
 
 <style>
-	.iibpr-hero-slide{min-height:100vh;}
+	.iibpr-hero-slide{min-height:clamp(440px,54vh,620px);}
 	.iibpr-hero-bg{position:absolute;inset:0;z-index:0;background:linear-gradient(120deg,#374050 0%,#3f5a35 55%,#5A9A42 100%);}
 	.iibpr-hero-tex{position:absolute;inset:0;z-index:1;mix-blend-mode:soft-light;opacity:.13;background-repeat:repeat;background-size:300px auto;}
-	.iibpr-hero-wave{position:absolute;z-index:2;left:-60px;right:-60px;bottom:110px;height:170px;opacity:.38;background-repeat:no-repeat;background-position:center;background-size:contain;pointer-events:none;}
-	.iibpr-hero-cut{position:absolute;z-index:3;right:3%;bottom:0;height:94%;width:auto;max-width:48%;object-fit:contain;object-position:bottom;filter:drop-shadow(-22px 18px 40px rgba(0,0,0,.4));}
-	.iibpr-hero-content{position:relative;z-index:4;max-width:60% !important;}
+	.iibpr-hero-wave{position:absolute;z-index:2;left:-60px;right:-60px;bottom:70px;height:120px;opacity:.34;background-repeat:no-repeat;background-position:center;background-size:contain;pointer-events:none;}
+	/* centered container with side margins */
+	.iibpr-hero-inner{position:relative;z-index:4;width:100%;max-width:1180px;margin:0 auto;padding:0 40px;
+		display:flex;align-items:center;min-height:clamp(440px,54vh,620px);}
+	.iibpr-hero-cut{position:absolute;z-index:3;right:0;bottom:0;height:96%;width:auto;max-width:42%;
+		object-fit:contain;object-position:bottom;filter:drop-shadow(-22px 18px 40px rgba(0,0,0,.4));}
+	.iibpr-hero-textcol{padding:96px 0 56px;}
+	.iibpr-hero-content{max-width:600px;}
 	@media (max-width:1023px){
-		.iibpr-hero-cut{opacity:.28;max-width:70%;right:-6%;}
-		.iibpr-hero-content{max-width:100% !important;}
-		.iibpr-hero-wave{bottom:60px;height:120px;}
+		.iibpr-hero-inner{padding:0 24px;}
+		.iibpr-hero-cut{opacity:.22;max-width:64%;right:-4%;}
+		.iibpr-hero-content{max-width:100%;}
+		.iibpr-hero-textcol{padding:104px 0 48px;}
+		.iibpr-hero-wave{bottom:40px;height:90px;}
 	}
 </style>
 
@@ -118,21 +125,26 @@ $autoplay = absint( iibpr_get( 'iibpr_hero_autoplay', 6000 ) );
 		<div class="carousel-track" style="width: <?php echo $total * 100; ?>%;">
 			<?php foreach ( $slides as $idx => $slide ) : ?>
 			<div class="carousel-slide" data-slide="<?php echo $idx + 1; ?>" style="flex-basis: <?php echo 100 / $total; ?>%; width: <?php echo 100 / $total; ?>%;">
-				<div class="relative min-h-screen overflow-hidden flex items-center iibpr-hero-slide">
+				<div class="relative overflow-hidden flex items-center iibpr-hero-slide">
 
 					<!-- Brand background: green gradient + monogram texture + wave -->
 					<div class="iibpr-hero-bg" aria-hidden="true"></div>
 					<div class="iibpr-hero-tex" aria-hidden="true" style="background-image:url('<?php echo esc_url( $iibpr_brand . 'texture-1.png' ); ?>');"></div>
 					<div class="iibpr-hero-wave" aria-hidden="true" style="background-image:url('<?php echo esc_url( $iibpr_brand . 'line-white.png' ); ?>');"></div>
 
-					<?php if ( ! empty( $slide['cutout'] ) ) : ?>
-						<img src="<?php echo esc_url( $slide['cutout'] ); ?>" alt="" class="iibpr-hero-cut" aria-hidden="true">
-					<?php elseif ( ! empty( $slide['image'] ) ) : ?>
+					<?php if ( empty( $slide['cutout'] ) && ! empty( $slide['image'] ) ) : ?>
 						<img src="<?php echo esc_url( $slide['image'] ); ?>" alt="" class="absolute inset-0 w-full h-full object-cover opacity-40" aria-hidden="true">
 					<?php endif; ?>
 
-					<!-- Content -->
-					<div class="relative z-10 w-full px-6 md:px-16 lg:px-24 py-24 pt-[140px] max-w-4xl<?php echo ! empty( $slide['cutout'] ) ? ' iibpr-hero-content' : ''; ?>">
+					<!-- Centered container -->
+					<div class="iibpr-hero-inner">
+
+						<?php if ( ! empty( $slide['cutout'] ) ) : ?>
+							<img src="<?php echo esc_url( $slide['cutout'] ); ?>" alt="" class="iibpr-hero-cut" aria-hidden="true">
+						<?php endif; ?>
+
+						<!-- Content -->
+						<div class="relative z-10 w-full iibpr-hero-textcol<?php echo ! empty( $slide['cutout'] ) ? ' iibpr-hero-content' : ''; ?>">
 
 						<?php if ( $slide['tagline'] ) : ?>
 						<div class="inline-block bg-white/20 backdrop-blur-sm px-5 py-1.5 rounded-full text-sm font-medium mb-6 tracking-wide">
@@ -175,7 +187,10 @@ $autoplay = absint( iibpr_get( 'iibpr_hero_autoplay', 6000 ) );
 
 					</div>
 
+				</div><!-- /iibpr-hero-inner -->
+
 				</div>
+
 			</div>
 			<?php endforeach; ?>
 		</div>

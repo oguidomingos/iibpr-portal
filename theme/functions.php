@@ -39,7 +39,7 @@ add_action( 'after_setup_theme', 'iibpr_theme_setup' );
    -------------------------------------------------- */
 function iibpr_scripts() {
     // Tailwind CSS compilado
-    wp_enqueue_style( 'iibpr-tailwind', get_template_directory_uri() . '/style.css', array(), '3.0.0' );
+    wp_enqueue_style( 'iibpr-tailwind', get_template_directory_uri() . '/style.css', array(), filemtime( get_template_directory() . '/style.css' ) );
 
     // Fontes Google — Inter + Playfair Display
     wp_enqueue_style( 'iibpr-fonts',
@@ -48,7 +48,7 @@ function iibpr_scripts() {
     );
 
     // Estilo principal do tema
-    wp_enqueue_style( 'iibpr-style', get_stylesheet_uri(), array( 'iibpr-tailwind' ), '3.0.0' );
+    wp_enqueue_style( 'iibpr-style', get_stylesheet_uri(), array( 'iibpr-tailwind' ), filemtime( get_stylesheet_directory() . '/style.css' ) );
 
     // Script principal
     wp_enqueue_script( 'iibpr-app', get_template_directory_uri() . '/js/script.min.js', array(), '3.1.0', true );

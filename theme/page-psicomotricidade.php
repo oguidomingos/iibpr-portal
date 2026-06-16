@@ -27,8 +27,14 @@ $hero_bg = iibpr_get( 'iibpr_prp_hero_bg' );
 					<p class="section-label section-label-text"><?php echo esc_html( iibpr_get( 'iibpr_prp_conceito_label', 'Conceito' ) ); ?></p>
 					<h2 class="text-3xl font-extrabold text-gray-900 mt-2 section-heading"><?php echo esc_html( iibpr_get( 'iibpr_prp_conceito_title', 'Entendendo a PRP' ) ); ?></h2>
 					<div class="text-gray-600 text-lg leading-relaxed mt-4 space-y-4">
-						<?php for ( $ti = 1; $ti <= 3; $ti++ ) :
-							$tx = iibpr_get( "iibpr_prp_conceito_text_{$ti}" );
+						<?php
+						$conceito_defaults = array(
+							1 => 'A Psicomotricidade Relacional Psicodinâmica (PRP) estuda o ser humano de forma integral — corpo, emoção e relação. Parte do princípio de que o movimento é a primeira linguagem, a via pela qual nos expressamos e nos vinculamos ao mundo.',
+							2 => 'Por meio do jogo espontâneo e da expressividade corporal, a PRP favorece o desenvolvimento, a autorregulação emocional e a construção de vínculos saudáveis, em qualquer fase da vida.',
+							3 => 'Fundamentada na metodologia do Prof. Dr. Mauro Vecchiato e do Istituto Italiano di Psicologia della Relazione (IIPR), nossa abordagem une rigor teórico e vivência prática.',
+						);
+						for ( $ti = 1; $ti <= 3; $ti++ ) :
+							$tx = iibpr_get( "iibpr_prp_conceito_text_{$ti}", $conceito_defaults[ $ti ] );
 							if ( $tx ) : ?><p><?php echo wp_kses_post( $tx ); ?></p><?php endif;
 						endfor; ?>
 					</div>
@@ -52,6 +58,11 @@ $hero_bg = iibpr_get( 'iibpr_prp_hero_bg' );
 			<?php
 			$pillar_img_defaults = array( 1 => 'acao-movimento-1.jpg', 2 => 'acao-grupo-2.jpg', 3 => 'acao-formacao-1.jpg' );
 			$pillar_alt_defaults = array( 1 => 'Psicomotricidade', 2 => 'Relacional', 3 => 'Psicodinâmica' );
+			$pillar_text_defaults = array(
+				1 => 'O estudo do ser humano através do corpo em movimento, integrando aspectos motores, cognitivos e afetivos do desenvolvimento.',
+				2 => 'Somos seres de relação. O vínculo e a interação são vitais para o ajustamento socioemocional e a capacidade de autorregulação.',
+				3 => 'Conteúdos inconscientes, muitas vezes ligados à infância, podem ser elaborados de forma potente por meio da intervenção psicocorporal.',
+			);
 			?>
 			<div class="grid md:grid-cols-3 gap-8">
 				<?php for ( $pi = 1; $pi <= 3; $pi++ ) :
@@ -64,8 +75,8 @@ $hero_bg = iibpr_get( 'iibpr_prp_hero_bg' );
 						     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
 					</div>
 					<div class="p-6 border-t-4 border-iibpr-green">
-						<h3 class="text-xl font-bold text-gray-900 mb-3"><?php echo esc_html( iibpr_get( "iibpr_prp_pillar_{$pi}_title", '' ) ); ?></h3>
-						<p class="text-gray-600 leading-relaxed text-sm pillar-<?php echo $pi; ?>-text"><?php echo wp_kses_post( iibpr_get( "iibpr_prp_pillar_{$pi}_text", '' ) ); ?></p>
+						<h3 class="text-xl font-bold text-gray-900 mb-3"><?php echo esc_html( iibpr_get( "iibpr_prp_pillar_{$pi}_title", $pillar_alt_defaults[ $pi ] ) ); ?></h3>
+						<p class="text-gray-600 leading-relaxed text-sm pillar-<?php echo $pi; ?>-text"><?php echo wp_kses_post( iibpr_get( "iibpr_prp_pillar_{$pi}_text", $pillar_text_defaults[ $pi ] ) ); ?></p>
 					</div>
 				</div>
 				<?php endfor; ?>
@@ -83,7 +94,12 @@ $hero_bg = iibpr_get( 'iibpr_prp_hero_bg' );
 			</div>
 			<?php
 			$area_img_defaults = array( 1 => 'bg-criancas.jpg', 2 => 'criancas-brincando.jpg', 3 => 'content-03.jpg' );
-			$area_alt_defaults = array( 1 => 'Educação', 2 => 'Prevenção', 3 => 'Terapia' );
+			$area_alt_defaults = array( 1 => 'Educação', 2 => 'Prevenção', 3 => 'Clínica' );
+			$area_text_defaults = array(
+				1 => 'Ampliação do repertório psicomotor e do desenvolvimento integral em contextos escolares e de aprendizagem.',
+				2 => 'Promoção de saúde, vínculo e bem-estar, prevenindo dificuldades socioemocionais e de aprendizagem.',
+				3 => 'Intervenção psicocorporal em contextos clínicos e terapêuticos, com crianças, adultos e grupos.',
+			);
 			?>
 			<div class="grid md:grid-cols-3 gap-8">
 				<?php for ( $ai = 1; $ai <= 3; $ai++ ) :
@@ -96,8 +112,8 @@ $hero_bg = iibpr_get( 'iibpr_prp_hero_bg' );
 						     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
 					</div>
 					<div class="p-6">
-						<h3 class="text-xl font-bold text-gray-900 mb-3 area-<?php echo $ai; ?>-title"><?php echo esc_html( iibpr_get( "iibpr_prp_area_{$ai}_title", '' ) ); ?></h3>
-						<p class="text-gray-600 leading-relaxed text-sm area-<?php echo $ai; ?>-text"><?php echo wp_kses_post( iibpr_get( "iibpr_prp_area_{$ai}_text", '' ) ); ?></p>
+						<h3 class="text-xl font-bold text-gray-900 mb-3 area-<?php echo $ai; ?>-title"><?php echo esc_html( iibpr_get( "iibpr_prp_area_{$ai}_title", $area_alt_defaults[ $ai ] ) ); ?></h3>
+						<p class="text-gray-600 leading-relaxed text-sm area-<?php echo $ai; ?>-text"><?php echo wp_kses_post( iibpr_get( "iibpr_prp_area_{$ai}_text", $area_text_defaults[ $ai ] ) ); ?></p>
 					</div>
 				</div>
 				<?php endfor; ?>
@@ -110,13 +126,21 @@ $hero_bg = iibpr_get( 'iibpr_prp_hero_bg' );
 		<div class="max-w-4xl mx-auto text-center">
 			<p class="section-label section-label-text"><?php echo esc_html( iibpr_get( 'iibpr_prp_health_label', 'Saúde e Bem-Estar' ) ); ?></p>
 			<h2 class="text-3xl font-extrabold text-gray-900 mt-2 mb-6 section-heading"><?php echo esc_html( iibpr_get( 'iibpr_prp_health_title', 'Viva o bem-estar e potencialize-se' ) ); ?></h2>
-			<p class="text-gray-600 text-lg leading-relaxed max-w-2xl mx-auto mb-10 health-intro"><?php echo wp_kses_post( iibpr_get( 'iibpr_prp_health_intro', '' ) ); ?></p>
+			<p class="text-gray-600 text-lg leading-relaxed max-w-2xl mx-auto mb-10 health-intro"><?php echo wp_kses_post( iibpr_get( 'iibpr_prp_health_intro', 'A Psicomotricidade Relacional é também um caminho de autoconhecimento e cuidado. Pelas vivências corporais, ampliamos a consciência de nós mesmos e a qualidade das nossas relações.' ) ); ?></p>
 
+			<?php
+			$benefit_defaults = array(
+				1 => array( 'Valorização das Potencialidades', 'Foco nos aspectos positivos e na construção de uma autoimagem saudável e congruente.' ),
+				2 => array( 'Autoconhecimento', 'Expressão de sentimentos inconscientes por meio da imagem mental inscrita no corpo.' ),
+				3 => array( 'Progresso Relacional e Comunicativo', 'Superação de dificuldades de interação em um ambiente que acolhe a comunicação corporal.' ),
+				4 => array( 'Vivência Corporal', 'Descoberta de novas experiências, estimulando espontaneidade, criatividade e bem-estar.' ),
+			);
+			?>
 			<div class="grid md:grid-cols-2 gap-8 text-left">
 				<?php for ( $bi = 1; $bi <= 4; $bi++ ) : ?>
-				<div class="benefit-card">
-					<h3 class="text-lg font-bold text-gray-900 mb-2 benefit-<?php echo $bi; ?>-title"><?php echo esc_html( iibpr_get( "iibpr_prp_benefit_{$bi}_title", '' ) ); ?></h3>
-					<p class="text-gray-600 text-sm benefit-<?php echo $bi; ?>-text"><?php echo wp_kses_post( iibpr_get( "iibpr_prp_benefit_{$bi}_text", '' ) ); ?></p>
+				<div class="benefit-card bg-green-50 rounded-2xl p-6 border border-green-100">
+					<h3 class="text-lg font-bold text-gray-900 mb-2 benefit-<?php echo $bi; ?>-title"><?php echo esc_html( iibpr_get( "iibpr_prp_benefit_{$bi}_title", $benefit_defaults[ $bi ][0] ) ); ?></h3>
+					<p class="text-gray-600 text-sm benefit-<?php echo $bi; ?>-text"><?php echo wp_kses_post( iibpr_get( "iibpr_prp_benefit_{$bi}_text", $benefit_defaults[ $bi ][1] ) ); ?></p>
 				</div>
 				<?php endfor; ?>
 			</div>
@@ -140,9 +164,24 @@ $hero_bg = iibpr_get( 'iibpr_prp_hero_bg' );
 		$mod_numbers = array( 'A' => '01', 'B' => '02', 'C' => '03' );
 		?>
 			<div class="space-y-8">
-				<?php foreach ( array( 'A', 'B', 'C' ) as $mod_key ) :
-					$mod_title = iibpr_get( "iibpr_prp_module_{$mod_key}_title", '' );
-					$mod_items_raw = iibpr_get( "iibpr_prp_module_{$mod_key}_items", '' );
+				<?php
+				$mod_defaults = array(
+					'A' => array(
+						'title' => 'Módulos Vivenciais',
+						'items' => "Módulo 1 — Sensibilização\nMódulo 2 — Intermediário\nMódulo 3 — Avançado\nMódulo 4 — Supervisão",
+					),
+					'B' => array(
+						'title' => 'Seminários Teóricos',
+						'items' => "Bases teóricas da Psicomotricidade Relacional\nDesenvolvimento psicomotor e o jogo\nFundamentos psicodinâmicos da intervenção\nEstudos de caso e leituras dirigidas",
+					),
+					'C' => array(
+						'title' => 'Prática Supervisionada',
+						'items' => "Observação e escuta do corpo em movimento\nIntervenção psicocorporal acompanhada\nSupervisão clínica em grupo\nElaboração de relatórios e devolutivas",
+					),
+				);
+				foreach ( array( 'A', 'B', 'C' ) as $mod_key ) :
+					$mod_title = iibpr_get( "iibpr_prp_module_{$mod_key}_title", $mod_defaults[ $mod_key ]['title'] );
+					$mod_items_raw = iibpr_get( "iibpr_prp_module_{$mod_key}_items", $mod_defaults[ $mod_key ]['items'] );
 					$mod_items = array_filter( array_map( 'trim', explode( "\n", $mod_items_raw ) ) );
 				?>
 				<div class="bg-white rounded-xl p-8 shadow-sm border border-gray-100">

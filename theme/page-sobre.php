@@ -27,8 +27,8 @@ $hero_bg = iibpr_get( 'iibpr_sobre_hero_bg' );
 					<p class="section-label section-label-text"><?php echo esc_html( iibpr_get( 'iibpr_sobre_hist_label', 'Nossa História' ) ); ?></p>
 					<h2 class="text-3xl font-extrabold text-gray-900 mt-2 section-heading"><?php echo esc_html( iibpr_get( 'iibpr_sobre_hist_title', 'De Brasília para o Mundo' ) ); ?></h2>
 					<div class="text-gray-600 text-lg leading-relaxed mt-4 space-y-4">
-						<?php $t1 = iibpr_get( 'iibpr_sobre_hist_text_1' ); if ( $t1 ) : ?><p class="hist-text-1"><?php echo wp_kses_post( $t1 ); ?></p><?php endif; ?>
-						<?php $t2 = iibpr_get( 'iibpr_sobre_hist_text_2' ); if ( $t2 ) : ?><p class="hist-text-2"><?php echo wp_kses_post( $t2 ); ?></p><?php endif; ?>
+						<?php $t1 = iibpr_get( 'iibpr_sobre_hist_text_1', 'O Instituto Ítalo Brasileiro de Psicomotricidade Relacional (IIBPR) nasceu em Brasília com a missão de difundir a Psicomotricidade Relacional Psicodinâmica no Brasil, unindo a tradição europeia do Prof. Dr. Mauro Vecchiato (IIPR — Itália) à prática brasileira.' ); if ( $t1 ) : ?><p class="hist-text-1"><?php echo wp_kses_post( $t1 ); ?></p><?php endif; ?>
+						<?php $t2 = iibpr_get( 'iibpr_sobre_hist_text_2', 'Há mais de duas décadas formamos profissionais de educação, saúde e desenvolvimento humano, integrando teoria, prática e supervisão. Hoje somos referência na região Centro-Oeste e levamos a abordagem para todo o país e para o exterior.' ); if ( $t2 ) : ?><p class="hist-text-2"><?php echo wp_kses_post( $t2 ); ?></p><?php endif; ?>
 					</div>
 				</div>
 				<div>
@@ -48,8 +48,14 @@ $hero_bg = iibpr_get( 'iibpr_sobre_hero_bg' );
 					<p class="section-label section-label-text"><?php echo esc_html( iibpr_get( 'iibpr_sobre_wwd_label', 'O Que Fazemos' ) ); ?></p>
 					<h2 class="text-3xl font-extrabold text-gray-900 mt-2 mb-6 section-heading"><?php echo esc_html( iibpr_get( 'iibpr_sobre_wwd_title', 'Atendimento e Formação' ) ); ?></h2>
 					<div class="text-gray-600 text-lg leading-relaxed space-y-4">
-						<?php for ( $ti = 1; $ti <= 3; $ti++ ) :
-							$tx = iibpr_get( "iibpr_sobre_wwd_text_{$ti}" );
+						<?php
+						$wwd_defaults = array(
+							1 => 'Atuamos em duas frentes complementares: a formação de profissionais e o atendimento em Psicomotricidade Relacional, sempre a partir da escuta do corpo em movimento e em relação.',
+							2 => 'Nossas formações combinam vivências práticas, fundamentação teórica e supervisão clínica, preparando o profissional para intervir com crianças, adultos e grupos.',
+							3 => 'Acreditamos que onde há movimento, há vida em relação — e é desse princípio que parte todo o nosso trabalho.',
+						);
+						for ( $ti = 1; $ti <= 3; $ti++ ) :
+							$tx = iibpr_get( "iibpr_sobre_wwd_text_{$ti}", $wwd_defaults[ $ti ] );
 							if ( $tx ) : ?><p><?php echo wp_kses_post( $tx ); ?></p><?php endif;
 						endfor; ?>
 					</div>
@@ -85,14 +91,21 @@ $hero_bg = iibpr_get( 'iibpr_sobre_hero_bg' );
 				3 => '<svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>',
 			);
 			?>
+			<?php
+			$mvv_defaults = array(
+				1 => array( 'Missão', 'Difundir a Psicomotricidade Relacional Psicodinâmica como caminho de desenvolvimento humano, formando profissionais e transformando vidas através do corpo e da relação.' ),
+				2 => array( 'Visão', 'Ser referência nacional e internacional na formação e na pesquisa em Psicomotricidade Relacional, ampliando o acesso a uma prática humana e baseada em evidências.' ),
+				3 => array( 'Valores', 'Ética, acolhimento, rigor científico e respeito à singularidade de cada pessoa — o movimento como expressão da vida em relação.' ),
+			);
+			?>
 			<div class="grid md:grid-cols-3 gap-8">
 				<?php for ( $mi = 1; $mi <= 3; $mi++ ) : ?>
 				<div class="bg-green-50 rounded-2xl p-8 border border-green-100">
 					<div class="w-14 h-14 bg-iibpr-green rounded-xl flex items-center justify-center mb-4">
 						<?php echo $mvv_icons[ $mi ]; ?>
 					</div>
-					<h3 class="text-xl font-bold text-gray-900 mb-3 mvv-<?php echo $mi; ?>-title"><?php echo esc_html( iibpr_get( "iibpr_sobre_mvv_{$mi}_title", '' ) ); ?></h3>
-					<p class="text-gray-600 leading-relaxed mvv-<?php echo $mi; ?>-text"><?php echo wp_kses_post( iibpr_get( "iibpr_sobre_mvv_{$mi}_text", '' ) ); ?></p>
+					<h3 class="text-xl font-bold text-gray-900 mb-3 mvv-<?php echo $mi; ?>-title"><?php echo esc_html( iibpr_get( "iibpr_sobre_mvv_{$mi}_title", $mvv_defaults[ $mi ][0] ) ); ?></h3>
+					<p class="text-gray-600 leading-relaxed mvv-<?php echo $mi; ?>-text"><?php echo wp_kses_post( iibpr_get( "iibpr_sobre_mvv_{$mi}_text", $mvv_defaults[ $mi ][1] ) ); ?></p>
 				</div>
 				<?php endfor; ?>
 			</div>
@@ -108,24 +121,38 @@ $hero_bg = iibpr_get( 'iibpr_sobre_hero_bg' );
 			</div>
 
 			<div class="grid md:grid-cols-2 gap-10 mb-16">
-				<?php for ( $fi = 1; $fi <= 2; $fi++ ) :
+				<?php
+				$founder_defaults = array(
+					1 => array(
+						'name'  => 'Dra. Fabiane Alves Crispim',
+						'role'  => 'Cofundadora e Coordenadora Acadêmica',
+						'bio'   => 'Pedagoga e psicopedagoga, mestre em Psicomotricidade pela Universidade de Évora (Portugal). Com mais de 19 anos dedicados à Psicomotricidade Relacional, é referência na formação de profissionais na região Centro-Oeste.',
+						'creds' => 'CRP 01/20.928 · STABP 493',
+					),
+					2 => array(
+						'name'  => 'Prof. Augusto Parras Albuquerque',
+						'role'  => 'Cofundador e Diretor',
+						'bio'   => 'Educador físico e mestre em Educação (UnB), com formação em Psicomotricidade na Europa. Especialista em intervenção com populações diversas, une prática clínica e pesquisa na abordagem relacional psicodinâmica.',
+						'creds' => 'CRP 01/18.510 · STABP 494',
+					),
+				);
+				for ( $fi = 1; $fi <= 2; $fi++ ) :
 					$f_photo = iibpr_get( "iibpr_founder_{$fi}_photo" );
 					$f_photo_defaults = array( 1 => 'fabiane2.png', 2 => 'augusto2.jpg' );
-					$f_photo_alts     = array( 1 => iibpr_get( "iibpr_founder_{$fi}_name", 'Fabiane Alves Crispim' ), 2 => iibpr_get( "iibpr_founder_{$fi}_name", 'Augusto Parras Albuquerque' ) );
 				?>
 				<div class="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow">
 					<div class="h-72 overflow-hidden">
 						<img src="<?php echo $f_photo ? esc_url( $f_photo ) : esc_url( $img . $f_photo_defaults[ $fi ] ); ?>"
-						     alt="<?php echo esc_attr( iibpr_get( "iibpr_founder_{$fi}_name", '' ) ); ?>"
-						     class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+						     alt="<?php echo esc_attr( iibpr_get( "iibpr_founder_{$fi}_name", $founder_defaults[ $fi ]['name'] ) ); ?>"
+						     class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" loading="lazy">
 					</div>
 					<div class="p-8">
-						<h3 class="text-xl font-bold text-gray-900"><?php echo esc_html( iibpr_get( "iibpr_founder_{$fi}_name", '' ) ); ?></h3>
-						<p class="text-iibpr-green font-medium mb-4"><?php echo esc_html( iibpr_get( "iibpr_founder_{$fi}_role", '' ) ); ?></p>
-						<?php $bio = iibpr_get( "iibpr_founder_{$fi}_bio_long" ); if ( $bio ) : ?>
+						<h3 class="text-xl font-bold text-gray-900"><?php echo esc_html( iibpr_get( "iibpr_founder_{$fi}_name", $founder_defaults[ $fi ]['name'] ) ); ?></h3>
+						<p class="text-iibpr-green font-medium mb-4"><?php echo esc_html( iibpr_get( "iibpr_founder_{$fi}_role", $founder_defaults[ $fi ]['role'] ) ); ?></p>
+						<?php $bio = iibpr_get( "iibpr_founder_{$fi}_bio_long", $founder_defaults[ $fi ]['bio'] ); if ( $bio ) : ?>
 						<p class="text-gray-600 leading-relaxed text-sm"><?php echo wp_kses_post( $bio ); ?></p>
 						<?php endif; ?>
-						<?php $creds = iibpr_get( "iibpr_founder_{$fi}_credentials" ); if ( $creds ) : ?>
+						<?php $creds = iibpr_get( "iibpr_founder_{$fi}_credentials", $founder_defaults[ $fi ]['creds'] ); if ( $creds ) : ?>
 						<p class="text-gray-400 text-xs mt-4"><?php echo wp_kses_post( $creds ); ?></p>
 						<?php endif; ?>
 					</div>
@@ -141,10 +168,17 @@ $hero_bg = iibpr_get( 'iibpr_sobre_hero_bg' );
 	         style="background-image: linear-gradient(135deg, rgba(64,72,86,0.92) 0%, rgba(58,90,42,0.88) 100%), url('<?php echo $stats_bg ? esc_url( $stats_bg ) : esc_url( $img . 'acao-grupo-4.jpg' ); ?>'); background-size: cover; background-position: center;">
 		<div class="max-w-4xl mx-auto relative z-10">
 			<div class="grid sm:grid-cols-2 md:grid-cols-4 gap-8 text-center">
-				<?php for ( $si = 1; $si <= 4; $si++ ) : ?>
+				<?php
+				$stats_defaults = array(
+					1 => array( '20+', 'Anos de atuação' ),
+					2 => array( '1.000+', 'Profissionais formados' ),
+					3 => array( '8', 'Formações ativas' ),
+					4 => array( '2', 'Seminários internacionais' ),
+				);
+				for ( $si = 1; $si <= 4; $si++ ) : ?>
 				<div>
-					<div class="text-4xl font-extrabold stat-<?php echo $si; ?>-number"><?php echo esc_html( iibpr_get( "iibpr_sobre_stat_{$si}_number", '' ) ); ?></div>
-					<div class="text-gray-300 mt-2 stat-<?php echo $si; ?>-label"><?php echo esc_html( iibpr_get( "iibpr_sobre_stat_{$si}_label", '' ) ); ?></div>
+					<div class="text-4xl font-extrabold stat-<?php echo $si; ?>-number"><?php echo esc_html( iibpr_get( "iibpr_sobre_stat_{$si}_number", $stats_defaults[ $si ][0] ) ); ?></div>
+					<div class="text-gray-300 mt-2 stat-<?php echo $si; ?>-label"><?php echo esc_html( iibpr_get( "iibpr_sobre_stat_{$si}_label", $stats_defaults[ $si ][1] ) ); ?></div>
 				</div>
 				<?php endfor; ?>
 			</div>

@@ -71,20 +71,21 @@ if ( ! $iibpr_cover_css_done ) :
 		.iibpr-cover__scrim{position:absolute;inset:0;z-index:3;
 			background:linear-gradient(to top,rgba(34,40,32,.55) 0%,transparent 55%);}
 		/* top row */
-		.iibpr-cover__top{position:absolute;top:22px;left:24px;right:24px;z-index:5;
-			display:flex;align-items:center;justify-content:space-between;gap:12px;}
-		.iibpr-cover__brand{font-weight:800;letter-spacing:.34em;font-size:13px;color:rgba(255,255,255,.95);}
+		.iibpr-cover__top{position:absolute;top:20px;left:22px;right:22px;z-index:5;
+			display:flex;align-items:center;justify-content:space-between;gap:10px;}
+		.iibpr-cover__brand{font-weight:800;letter-spacing:.3em;font-size:13px;color:rgba(255,255,255,.95);
+			flex:0 0 auto;}
 		.iibpr-cover__badge{background:#A6D16C;color:#2b3320;font-weight:700;font-size:11px;
-			letter-spacing:.04em;padding:6px 14px;border-radius:999px;white-space:nowrap;
-			box-shadow:0 2px 10px rgba(0,0,0,.18);}
+			letter-spacing:.02em;padding:5px 12px;border-radius:999px;white-space:nowrap;flex:0 1 auto;
+			max-width:64%;overflow:hidden;text-overflow:ellipsis;box-shadow:0 2px 10px rgba(0,0,0,.18);}
 		/* content */
 		.iibpr-cover__content{position:relative;z-index:5;padding:26px 28px 30px;}
 		.iibpr-cover__rule{width:46px;height:3px;border-radius:2px;background:#A6D16C;margin-bottom:14px;}
 		.iibpr-cover__kicker{font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
 			color:rgba(255,255,255,.82);margin-bottom:8px;}
 		.iibpr-cover__title{font-family:"Playfair Display",ui-serif,Georgia,serif;font-weight:800;
-			font-size:clamp(24px,3.4vw,34px);line-height:1.1;color:#fff;margin:0;
-			text-shadow:0 2px 14px rgba(0,0,0,.32);
+			font-size:clamp(22px,3.2vw,32px);line-height:1.12;color:#fff;margin:0;
+			text-shadow:0 2px 14px rgba(0,0,0,.32);overflow-wrap:break-word;word-break:break-word;hyphens:auto;
 			display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
 		.iibpr-cover__barline{position:absolute;left:0;right:0;bottom:0;height:6px;z-index:5;
 			background:linear-gradient(90deg,#6CB350 0%,#A6D16C 50%,#6CB350 100%);}

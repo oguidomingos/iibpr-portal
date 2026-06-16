@@ -4,7 +4,7 @@
  */
 $img_base = get_template_directory_uri() . '/images/';
 $partners = array(
-    array( 'name' => 'Prof. Dr. Mauro Vecchiato', 'desc' => 'Metodologia da Psicomotricidade Relacional — IIPR, Itália', 'logo' => $img_base . 'mauro-quadrado.jpg' ),
+    array( 'name' => 'Prof. Dr. Mauro Vecchiato', 'desc' => 'Prof. Dr. Mauro Vecchiato — Metodologia (IIPR, Itália)', 'logo' => $img_base . 'mauro-quadrado.jpg' ),
     array( 'name' => 'IIPR',  'desc' => 'Instituto Internacional de Psicomotricidade Relacional — Itália', 'logo' => $img_base . 'iipr.png' ),
     array( 'name' => 'ABP',   'desc' => 'Associação Brasileira de Psicomotricidade', 'logo' => $img_base . 'abp-logo.jpg' ),
     array( 'name' => 'IESB',  'desc' => 'Instituto de Educação Superior de Brasília', 'logo' => $img_base . 'iesb-logo.jpg' ),

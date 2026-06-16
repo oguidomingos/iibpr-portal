@@ -41,7 +41,7 @@ $slide_defaults = array(
 	),
 	3 => array(
 		'tagline'   => 'Coordenadora Acadêmica',
-		'title'     => 'Dra. Fabiane Lagranha',
+		'title'     => 'Dra. Fabiane Alves Crispim',
 		'subtitle'  => '"O corpo é o primeiro instrumento de aprendizagem da criança."',
 		'desc'      => '',
 		'cta_label' => 'Conheça a Equipe',
@@ -51,7 +51,7 @@ $slide_defaults = array(
 	),
 	4 => array(
 		'tagline'   => 'Diretor do IIBPR',
-		'title'     => 'Prof. Augusto Lagranha',
+		'title'     => 'Prof. Augusto Parras Albuquerque',
 		'subtitle'  => '"A psicomotricidade relacional transforma vidas através do corpo."',
 		'desc'      => '',
 		'cta_label' => 'Conheça a Equipe',
